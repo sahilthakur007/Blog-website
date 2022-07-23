@@ -1,18 +1,22 @@
 import { Box, Button, Card, TextField } from "@mui/material";
 import { ThemeProvider } from "@mui/material";
 import { customTheme } from "../Theme";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-
+import { signInUser } from "../Redux/actions/authAction";
+import { useDispatch } from "react-redux";
 const Signin = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
     const [userinfo,setUserinfo]=useState({email:"",password:""})
     const userInputHandler=(e)=>{
         const updatedUserInfo={...userinfo}
         updatedUserInfo[e.target.id]=e.target.value
         setUserinfo(updatedUserInfo)
     }
-    const formSubmitHandler=(e)=>{
-        console.log(userinfo)
+  const formSubmitHandler = (e) => {
+         dispatch(signInUser(userinfo,navigate))
+        // console.log(userinfo)
     }
   return (
     <Box pt="100px" sx={{ display: "flex", justifyContent: "center" }}>
