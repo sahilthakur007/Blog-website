@@ -1,13 +1,31 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, Card, TextField } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
+import { customTheme } from "../Theme";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Signup = () => {
+    const [userinfo,setUserinfo]=useState({name:"",email:"",password:""})
+    const [photo,setPhoto]=useState("")
+    const userInputHandler=(e)=>{
+        const updatedUserInfo={...userinfo}
+        updatedUserInfo[e.target.id]=e.target.value
+        setUserinfo(updatedUserInfo)
+    }
+    const photoHandler=(e)=>{
+        let pic=e.target.files[0]
+        setPhoto(URL.createObjectURL(pic))
+    }
+    const formSubmitHandler=(e)=>{
+        console.log(userinfo)
+        console.log(photo)
+    }
   return (
-    <Box pt="80px" sx={{ display: "flex", justifyContent: "center" }}>
-      <Box sx={{ width: "65%", backgroundColor: "pink", p: "2%" ,display: "flex",borderRadius:"5px"}}>
+    <Box pt="100px" sx={{ display: "flex", justifyContent: "center" }}>
         <Box
           component="form"
           sx={{
-            width: "50%",
+            width: "45%",
             backgroundColor: "white",
             p: "2%",
             display: "flex",
@@ -21,45 +39,55 @@ const Signup = () => {
           <TextField
             required
             type="text"
-            id="outlined-required"
+            id="name"
             label="name"
             placeholder="Your name"
             size="small"
+            onChange={(e)=>userInputHandler(e)}
             sx={{ m: "8px", width: "90%" }}
           />
           <TextField
             required
             type="email"
-            id="outlined-required"
+            id="email"
             label="email"
             placeholder="Your email"
             size="small"
+            onChange={(e)=>userInputHandler(e)}
             sx={{ m: "8px", width: "90%" }}
           />
           <TextField
             required
             type="password"
-            id="outlined-required"
+            id="password"
             label="password"
             placeholder="Your password"
             size="small"
+            onChange={(e)=>userInputHandler(e)}
             sx={{ m: "8px", width: "90%" }}
           />
-          <Button
-            variant="contained"
-            color="error"
-            sx={{ width: "40%", mt: "15px",mb:"40px"}}
-          >
-            Sign up
-          </Button>
-          <label style={{color:"grey"}}>Account already exists?</label>
-          <Button color="secondary">Sign in</Button>
+          <Box sx={{display:"flex",flexDirection:"column",width:"90%",mt:"10px"}}>
+          <label>Upload your profile photo</label> 
+          <TextField
+            type="file"
+            size="small"
+            onChange={(e)=>{photoHandler(e)}}
+          />
+          </Box>
+          <ThemeProvider theme={customTheme}>
+            <Button
+              variant="contained"
+              color="myColor"
+              onClick={formSubmitHandler}
+              sx={{ width: "40%", mt: "15px", mb: "40px" }}
+            >
+              Sign up
+            </Button>
+          </ThemeProvider>
+          <label style={{ color: "grey" }}>Account already exists?</label>
+          <Link to="/signin"><Button color="secondary" variant="contained" sx={{mt:"2px"}}>Sign in</Button></Link>
         </Box>
-        <Box>
-          <img src="" alt="login img"/>
       </Box>
-      </Box>
-    </Box>
   );
 };
 export default Signup;

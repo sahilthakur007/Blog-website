@@ -1,0 +1,76 @@
+import { Box, Button, Card, TextField } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
+import { customTheme } from "../Theme";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+
+const Signin = () => {
+    const [userinfo,setUserinfo]=useState({email:"",password:""})
+    const userInputHandler=(e)=>{
+        const updatedUserInfo={...userinfo}
+        updatedUserInfo[e.target.id]=e.target.value
+        setUserinfo(updatedUserInfo)
+    }
+    const formSubmitHandler=(e)=>{
+        console.log(userinfo)
+    }
+  return (
+    <Box pt="100px" sx={{ display: "flex", justifyContent: "center" }}>
+      <Box
+        component="form"
+        sx={{
+          width: "45%",
+          backgroundColor: "white",
+          p: "2%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          borderRadius: "15px",
+          alignItems: "center",
+          boxShadow: "2px 2px 6px grey",
+        }}
+      >
+        <TextField
+          required
+          type="email"
+          id="email"
+          label="email"
+          placeholder="Your email"
+          size="small"
+          value={userinfo.email}
+          onChange={userInputHandler}
+          sx={{ m: "8px", width: "90%" }}
+        />
+        <TextField
+          required
+          type="password"
+          id="password"
+          label="password"
+          placeholder="Your password"
+          size="small"
+          value={userinfo.password}
+          onChange={(e)=>userInputHandler(e)}
+          sx={{ m: "8px", width: "90%" }}
+        />
+
+        <ThemeProvider theme={customTheme}>
+          <Button
+            variant="contained"
+            color="error"
+            onClick={formSubmitHandler}
+            sx={{ width: "40%", mt: "15px", mb: "40px" }}
+          >
+            Sign in
+          </Button>
+        </ThemeProvider>
+        <label style={{ color: "grey" }}>New user?</label>
+        <Link to="/signup">
+          <Button color="secondary" variant="contained" sx={{ mt: "2px" }}>
+            Sign up
+          </Button>
+        </Link>
+      </Box>
+    </Box>
+  );
+};
+export default Signin;

@@ -1,11 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import { AppBar, Toolbar, Stack, Box, TextField, Typography, Button } from "@mui/material"
-
+import { ThemeProvider } from "@mui/material";
+import { customTheme } from "../Theme";
 export default () => {
     const [user, setuser] = useState(true);
     return (
         <>
+            <ThemeProvider theme={customTheme}>
             <AppBar color="error" sx={{
                 height: "80px",
                 pt: "10px",
@@ -18,7 +20,7 @@ export default () => {
                     <Box sx={{
                         flexGrow: 1,
                     }}>
-                        <TextField placeholder="search" sx={{
+                        <TextField placeholder="search" size="small" sx={{
                            
                             backgroundColor: "#fff",
                             ml: "50px",
@@ -63,6 +65,7 @@ export default () => {
                     
                 </Toolbar>
             </AppBar>
+            </ThemeProvider>
         </>
     )
 }
