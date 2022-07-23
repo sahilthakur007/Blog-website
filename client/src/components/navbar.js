@@ -13,7 +13,7 @@ export default () => {
             }}>
                 <Toolbar >
                     <Typography variant ="h5" fontWeight={500}>
-                        <strong><em>Easy Bog </em></strong>
+                        <strong><em>Easy Blog </em></strong>
                     </Typography>
                     <Box sx={{
                         flexGrow: 1,
