@@ -3,8 +3,18 @@ import { useState } from "react";
 import { AppBar, Toolbar, Stack, Box, TextField, Typography, Button } from "@mui/material"
 import { ThemeProvider } from "@mui/material";
 import { customTheme } from "../Theme";
+import { useSelector, useDispatch } from "react-redux"; 
+
+import { logoutUser } from "../Redux/actions/authAction";
+import { useNavigate } from "react-router-dom";
 export default () => {
-    const [user, setuser] = useState(true);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const {userInfo} = useSelector((state) => state.authReducer);
+    console.log(userInfo)
+    const handleLogout = () => {
+        dispatch(logoutUser())
+    }
     return (
         <>
             <ThemeProvider theme={customTheme}>
@@ -40,7 +50,7 @@ export default () => {
                         }}>About</Button>
                         {
                             
-                            user && (<>
+                                userInfo && (<>
                                 <Button color="inherit" sx={{
                                     fontSize: "19px",
                                     textTransform: 'none'
@@ -49,7 +59,7 @@ export default () => {
                                     fontSize: "19px",
                                     textTransform: 'none'
                                     }}>Profile</Button>
-                                <Button color="inherit" sx={{
+                                <Button color="inherit" onClick={handleLogout} sx={{
                                     fontSize: "19px",
                                     textTransform: 'none'
                                 }}>Logout</Button>
@@ -57,10 +67,12 @@ export default () => {
                             
                         }
                      
-                        {!user && <Button color="inherit" sx={{
-                            fontSize: "17px",
+                            {!userInfo && <Button color="inherit" sx={{
+                            fontSize: "19px",
                             textTransform: 'none'
-                        }}>Login</Button>}
+                            }}
+                            onClick = {()=>{navigate("/signup")}}
+                            >Login</Button>}
                     </Stack>
                     
                 </Toolbar>

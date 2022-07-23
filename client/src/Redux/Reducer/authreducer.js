@@ -1,13 +1,19 @@
 const initialSate = {
-    user:null
+    userInfo:null
 }
 const authReducer = ( state = initialSate , action) => {
     switch (action.type)
     {
         case "LOGIN":
-            return { ...state, user: action.payload };
+            localStorage.setItem("profile", JSON.stringify({ ...action?.payload }))
+            return {...state,userInfo:action?.payload}
+        case "SIGNIN":
+            localStorage.setItem("profile", JSON.stringify({ ...action?.payload }))
+            return { ...state, userInfo: action?.payload }
+            
         case "LOGOUT":
-            return { ...state, user: null };
+            localStorage.clear();
+            return { ...state, userInfo: null };
          default:
             return state;
     }

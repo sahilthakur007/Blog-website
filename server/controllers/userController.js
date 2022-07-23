@@ -29,6 +29,7 @@ exports.login = async (req, res) => {
 }
 exports.signIn = async (req, res) => {
     const { email, password } = req.body;
+    console.log(req.body);
     if (!email || !password) {
         return res.status(400).json({
             message: "Some Field is missing please include that"
@@ -37,7 +38,7 @@ exports.signIn = async (req, res) => {
     }
     try {
         const user = await User.findOne({ email });
-       
+
         if (!user) {
             return res.status(404).json({
                 message: "Unable to found user "
