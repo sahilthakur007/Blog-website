@@ -7,6 +7,7 @@ import Signup from './components/Signup';
 function App() {
   return (
     <>
+      <Navbar />
       <Routes>
         <Route path="/" exact element={ <Home/>} />
         <Route path="/signin" exact element={ <Signin/>} />

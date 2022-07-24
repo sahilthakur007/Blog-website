@@ -18,9 +18,9 @@ export default () => {
     return (
         <>
             <ThemeProvider theme={customTheme}>
-            <AppBar color="error" sx={{
-                height: "80px",
-                pt: "10px",
+            <AppBar sx={{
+                backgroundImage:"linear-gradient(to left, red, #ff9100)",
+                height: "60px"
                
             }}>
                 <Toolbar >
@@ -40,7 +40,7 @@ export default () => {
                         }} />
                     </Box>
                     <Stack direction = "row" spacing ={2}>
-                        <Button color="inherit" sx={{
+                       <Button onClick={()=>navigate("/")}color="inherit" sx={{
                             fontSize: "19px",
                             textTransform: 'none'
                         }}>Home</Button>

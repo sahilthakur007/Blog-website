@@ -1,9 +1,8 @@
-import React from "react";
-import Navbar from "./navbar";
-import Signup from "./Signup";
+import { Fab, Stack, Button, Chip } from "@mui/material";
+import React, { useState } from "react";
 import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
-import { width } from "@mui/system";
+import BlogCards from "./BlogCards";
 
 const slideImages = [
   {
@@ -34,20 +33,52 @@ const properties = {
 const Home = () => {
   return (
     <>
-      <Navbar />
-      <div style={{ marginTop: "18vh" }}>
+      <div
+        style={{
+          backgroundImage:
+            "url(https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80)",
+          backgroundRepeat: "no-repeat",
+          height: "50vh",
+          width: "100vw",
+          backgroundSize: "100vw 50vh",
+          marginTop: "60px",
+          opacity: "70%",
+          display: "flex",
+          justifyContent: "center",
+          paddingTop: "8vh",
+        }}
+      >
+        <h1 style={{ fontStyle: "italic", fontWeight: "bolder" }}>
+          Welcome to Easy Blog!
+        </h1>
+      </div>
+      <div style={{ marginTop: "3vh" }}>
         <Slide {...properties}>
           {slideImages.map((slideImage, index) => (
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <img
-                src={slideImage.url}
-                style={{ height: "50vh", width: "80%" }}
-              />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <div
+                style={{
+                  backgroundImage: `url(${slideImage.url})`,
+                  height: "50vh",
+                  width: "80vw",
+                  backgroundSize: "80vw 50vh",
+                  backgroundRepeat: "no-repeat",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <h2>Blog Title</h2>
+              </div>
             </div>
           ))}
         </Slide>
       </div>
-
       {/* <Slide {...properties}>
             {slideImages.map((each, index) => (
               <div key={index} className="each-slide">
@@ -55,7 +86,19 @@ const Home = () => {
               </div>
             ))}
           </Slide> */}
+        <Stack direction="row" spacing={2} sx={{m:"20px"}}>
+            <Fab variant="extended" sx={{height:"40px",boxShadow:"0px 1px 6px grey"}}>All</Fab>
+            <Fab variant="extended" sx={{height:"40px",boxShadow:"0px 1px 6px grey"}}>Trending</Fab>
+            <Fab variant="extended" sx={{height:"40px",boxShadow:"0px 1px 6px grey"}}>Technical</Fab>
+            <Fab variant="extended" sx={{height:"40px",boxShadow:"0px 1px 6px grey"}}>Environmental</Fab>
+        </Stack>
+        {/* <Stack direction="row" spacing={2} sx={{m:"10px"}}>
+            <Chip label="All" sx={{boxShadow:"0px 1px 6px grey"}}>All</Chip>
+            <Chip variant="outlined" label="Technical" sx={{boxShadow:"0px 0.5px 6px grey"}}>Trending</Chip>
+            <Chip label="Trending" sx={{height:"40px",boxShadow:"0px 1px 6px grey"}}>Technical</Chip>
+        </Stack> */}
+        <BlogCards />
     </>
   );
 };
-export default Home
+export default Home;
