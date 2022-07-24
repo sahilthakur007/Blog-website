@@ -20,7 +20,7 @@ export default () => {
             <ThemeProvider theme={customTheme}>
             <AppBar sx={{
                 backgroundImage:"linear-gradient(to left, red, #ff9100)",
-                height: "60px"
+                height: "70px"
                
             }}>
                 <Toolbar >
