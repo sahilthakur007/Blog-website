@@ -5,6 +5,7 @@ import Navbar from "./components/navbar";
 import Signin from './components/Signin';
 import Signup from './components/Signup';
 import SingleBlog from './components/singleBlog';
+import CreateBlog from './components/createBlog';
 function App() {
   return (
     <>
@@ -14,6 +15,7 @@ function App() {
         <Route path="/signin" exact element={<Signin />} />
         <Route path="/signup" exact element={<Signup />} />
         <Route path="/singleblog/:id" element={<SingleBlog/>} />
+        <Route path="/createBlog" element={<CreateBlog/>} />
       </Routes>
     </>
   );
