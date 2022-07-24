@@ -4,16 +4,18 @@ import Home from "./components/home"
 import Navbar from "./components/navbar";
 import Signin from './components/Signin';
 import Signup from './components/Signup';
+import SingleBlog from './components/singleBlog';
 function App() {
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <Routes>
-        <Route path="/" exact element={ <Home/>} />
-        <Route path="/signin" exact element={ <Signin/>} />
-        <Route path="/signup" exact element={ <Signup/>} />
+        <Route path="/" exact element={<Home />} />
+        <Route path="/signin" exact element={<Signin />} />
+        <Route path="/signup" exact element={<Signup />} />
+        <Route path="/singleblog/:id" element={<SingleBlog/>} />
       </Routes>
-   </>
+    </>
   );
 }
 
