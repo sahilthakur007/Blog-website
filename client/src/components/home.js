@@ -1,4 +1,4 @@
-import { Fab, Stack, Button, Chip } from "@mui/material";
+import { Fab, Stack, Button, Chip,Typography } from "@mui/material";
 import React, { useState } from "react";
 import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
@@ -40,9 +40,9 @@ const Home = () => {
           backgroundRepeat: "no-repeat",
           height: "50vh",
           width: "100vw",
-          backgroundSize: "100vw 50vh",
-          marginTop: "60px",
-          opacity: "70%",
+          backgroundSize: "100vw 70vh",
+          marginTop: "70px",
+          // opacity: "70%",
           display: "flex",
           justifyContent: "center",
           paddingTop: "8vh",
@@ -52,7 +52,10 @@ const Home = () => {
           Welcome to Easy Blog!
         </h1>
       </div>
-      <div style={{ marginTop: "3vh" }}>
+      <Typography variant="h5" color="myColor" fontWeight={500} sx={{mt:"4vh",ml:"5vw"}} >
+          <strong><em>Blogs trending these days...</em></strong>
+      </Typography>
+      <div style={{ marginTop: "2vh" }}>
         <Slide {...properties}>
           {slideImages.map((slideImage, index) => (
             <div
@@ -65,9 +68,9 @@ const Home = () => {
               <div
                 style={{
                   backgroundImage: `url(${slideImage.url})`,
-                  height: "50vh",
+                  height: "70vh",
                   width: "80vw",
-                  backgroundSize: "80vw 50vh",
+                  backgroundSize: "80vw 70vh",
                   backgroundRepeat: "no-repeat",
                   display: "flex",
                   justifyContent: "center",
