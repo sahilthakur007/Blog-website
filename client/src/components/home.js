@@ -1,8 +1,11 @@
-import { Fab, Stack, Button, Chip,Typography } from "@mui/material";
-import React, { useState } from "react";
+import { Fab, Stack,Typography, Box, Tooltip } from "@mui/material";
 import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 import BlogCards from "./BlogCards";
+import EditIcon from '@mui/icons-material/Edit'
+import { ThemeProvider } from "@mui/material";
+import { customTheme } from "../Theme";
+import { useNavigate } from "react-router-dom";
 
 const slideImages = [
   {
@@ -31,8 +34,9 @@ const properties = {
   easing: "ease",
 };
 const Home = () => {
+  const navigate =useNavigate();
   return (
-    <>
+    <Box>
       <div
         style={{
           backgroundImage:
@@ -101,7 +105,15 @@ const Home = () => {
             <Chip label="Trending" sx={{height:"40px",boxShadow:"0px 1px 6px grey"}}>Technical</Chip>
         </Stack> */}
         <BlogCards />
-    </>
+        <ThemeProvider theme={customTheme}>
+        <Tooltip title="Write blog" sx={{position:"fixed", bottom:20, right:20}}>
+        <Fab variant="extended" color="myColor" aria-label="add" onClick={()=>{navigate("/createBlog")}}>
+        <EditIcon sx={{ mr: 1 }} />
+        New Blog
+        </Fab>
+        </Tooltip>
+        </ThemeProvider>
+    </Box>
   );
 };
 export default Home;

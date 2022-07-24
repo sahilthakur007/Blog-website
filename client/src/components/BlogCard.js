@@ -1,9 +1,7 @@
-import { Grid, Paper, Card, Typography, CardContent, CardActions, Button, Badge } from "@mui/material";
+import { Card, Typography, CardContent, CardActions, Button, Badge } from "@mui/material";
 import { Box } from "@mui/system";
-import { useState } from "react";
 
 const BlogCard = () => {
-    const [like,setLike]=useState(false)
   return (
     <>
       <Box sx={{ display: "flex", alignItems: "center", margin: "20px" }}>
@@ -44,9 +42,8 @@ const BlogCard = () => {
             <p style={{color:"grey",margin:"0px"}}>Date: 24-07-2022</p>
             <p>blog contents...</p>
           </CardContent>
-          <CardActions sx={{ml:"11vw",mt:"2vh",display:"flex"}}>
-              <Button onClick={()=>{setLike(!like)}} variant={like?"contained":"outlined"} color="error">{like?"Liked":"Like"}</Button> 
-              <Button variant="outlined">Comment</Button>
+          <CardActions sx={{ml:"12vw",mt:"2vh"}}>
+              <Button variant="outlined">Read full blog</Button>
           </CardActions>
         </Card>
         </Badge>
