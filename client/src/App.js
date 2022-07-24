@@ -1,12 +1,13 @@
 import './App.css';
 import { Routes, Route } from "react-router-dom"
-import Home from "./components/Home"
+import Home from "./components/home"
 import Navbar from "./components/navbar";
 import Signin from './components/Signin';
 import Signup from './components/Signup';
 function App() {
   return (
     <>
+      <Navbar/>
       <Routes>
         <Route path="/" exact element={ <Home/>} />
         <Route path="/signin" exact element={ <Signin/>} />
