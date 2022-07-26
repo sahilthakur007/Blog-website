@@ -14,61 +14,60 @@ import {
   Box,
   IconButton,
   Divider,
+  TextField
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
+import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import CommentIcon from "@mui/icons-material/Comment";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { sendComment, deleteBlog, addLike } from "../Redux/actions/blogsactoion"
 export default () => {
+  const { blogs } = useSelector((state) => state.blogsReducer.blogs);
+  const { id } = useParams();
+  console.log(id)
+  // if(blogs)
+  console.log(blogs)
+  const singleBlog = blogs?.find((blog) => blog._id == id)
+  console.log(singleBlog)
   const [showComments, setShowCommnets] = useState(false);
-  const comments = [
-    {
-      commentId: 1,
-      user: "Super Cops",
-      date: "26/08/2022",
-      comment: "This is very imformative blog keep sharing.",
-    },
-    {
-      commentId: 1,
-      user: "Super Cops",
-      date: "26/08/2022",
-      comment: "This is very imformative blog keep sharing.",
-    },
-    {
-      commentId: 1,
-      user: "Super Cops",
-      date: "26/08/2022",
-      comment: "This is very imformative blog keep sharing.",
-    },
-    {
-      commentId: 1,
-      user: "Super Cops",
-      date: "26/08/2022",
-      comment: "This is very imformative blog keep sharing.",
-    },
-    {
-      commentId: 1,
-      user: "Super Cops",
-      date: "26/08/2022",
-      comment: "This is very imformative blog keep sharing.",
-    },
-    {
-      commentId: 1,
-      user: "Super Cops",
-      date: "26/08/2022",
-      comment: "This is very imformative blog keep sharing.",
-    },
-    {
-      commentId: 1,
-      user: "Super Cops",
-      date: "26/08/2022",
-      comment: "This is very imformative blog keep sharing.",
-    },
-  ];
+  const { userInfo } = useSelector((state) => state.authReducer);
+  // console.log(userInfo.user);
+  const commentUserName = userInfo.user.name;
+  console.log(commentUserName);
+  const [Fcomment, setcomment] = useState({
+    comment: "",
+  });
+  const [liked,setliked] = useState(false)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
   const commentHandler = () => {
     setShowCommnets(!showComments);
-  };
+  }
+  const handleComment = (e) => {
+    setcomment({ ...Fcomment, [e.target.name]: e.target.value })
+  }
+  const submitComment = () => {
+    // console.log(Fcomment);
+    const newComment = { ...Fcomment, commentUserName }
+    console.log(newComment)
+    dispatch(sendComment(newComment, id))
+  }
+  const handleDelete = () => {
+    console.log("clicked")
+    dispatch(deleteBlog(id,navigate))
+  }
+  const handleEdit = () => {
+    navigate(`/createblog/${id}`)
+  }
+  const likeHandler = () => {
+    dispatch(addLike(id));
+    setliked((prev) => !prev);
+  }
   return (
     <>
       <Paper
@@ -84,7 +83,7 @@ export default () => {
             fontWeight: 500,
           }}
         >
-          TechFusion
+          {singleBlog.title}
         </Typography>
         <Typography
           variant="h6"
@@ -113,29 +112,8 @@ export default () => {
             }}
           >
             <p>
-              {" "}
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-              quae ab illo inventore veritatis et quasi architecto beatae vitae
-              dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-              aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-              eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
-              est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-              velit, sed quia non numquam eius modi tempora incidunt ut labore
-              et dolore magnam aliquam quaerat voluptatem.
-            </p>{" "}
-            Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis
-            suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis
-            autem vel eum iure reprehenderit qui in ea voluptate velit esse quam
-            nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo
-            voluptas nulla pariatur? At vero eos et accusamus et iusto odio
-            dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
-            atque corrupti quos dolores et quas molestias excepturi sint
-            occaecati cupiditate non provident, similique sunt in culpa qui
-            officia deserunt mollitia animi, id est laborum et dolorum fuga. Et
-            harum quidem rerum facilis est et expedita distinctio. Nam libero
-            tempore, cum soluta nobis est eligendi optio cumque nihil impedit
-            quo minus id quod maxime placeat facere Ruler
+              {singleBlog.content}
+            </p>
           </Typography>
         </Box>
         <Stack
@@ -148,7 +126,7 @@ export default () => {
             mt: "2%",
           }}
         >
-          <IconButton
+          <IconButton onClick={handleEdit}
             size="large"
             sx={{
               borderRadius: "100%",
@@ -162,7 +140,7 @@ export default () => {
               }}
             />
           </IconButton>
-          <IconButton>
+          <IconButton onClick={handleDelete}>
             <DeleteIcon
               sx={{
                 fontSize: "40px",
@@ -178,13 +156,24 @@ export default () => {
             ml: "5%",
           }}
         >
-          <IconButton>
-            <ThumbUpIcon
-              sx={{
-                fontSize: "40px",
-                color: "#000",
-              }}
-            />
+          <IconButton onClick={likeHandler}>
+            {
+              liked ? (
+                <ThumbUpIcon
+                  sx={{
+                    fontSize: "40px",
+                    color: "#000",
+                  }}
+                />
+              ) : (
+                  <ThumbUpOutlinedIcon
+                    sx={{
+                      fontSize: "40px",
+                      color: "#000",
+                    }}
+                  />
+              )
+            }
           </IconButton>
           <IconButton>
             <ThumbDownIcon
@@ -214,8 +203,22 @@ export default () => {
             width: "90%",
           }}
         >
+          {showComments && (<>
+            <TextField name="comment" onChange={handleComment} fullWidth value={Fcomment.comment} placeholder="write your comment here" />
+            <Box sx={{
+              display: "flex",
+              justifyContent: "right"
+            }}>
+              <Button onClick={submitComment} variant="contained" color="error" sx={{
+                textTransform: "capitalize",
+                mt: "2%",
+
+              }} >Post</Button>
+            </Box>
+          </>
+          )}
           {showComments &&
-            comments.map((comment) => (
+            singleBlog.comments.map((comment) => (
               <ListItem>
                 <ListItemButton>
                   <ListItemIcon>
@@ -224,7 +227,8 @@ export default () => {
                     </ListItemAvatar>
                   </ListItemIcon>
                   <ListItemText
-                    primary={`${comment.user}   ${comment.date}`}
+                    primary={`${comment.commentUserName
+                      }   ${comment.commentOn}`}
                     secondary={comment.comment}
                   />
                 </ListItemButton>

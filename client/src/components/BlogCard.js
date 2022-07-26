@@ -1,7 +1,9 @@
 import { Card, Typography, CardContent, CardActions, Button, Badge } from "@mui/material";
 import { Box } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 
-const BlogCard = () => {
+const BlogCard = ({ blog }) => {
+  const navigate = useNavigate();
   return (
     <>
       <Box sx={{ display: "flex", alignItems: "center", margin: "20px" }}>
@@ -19,7 +21,7 @@ const BlogCard = () => {
             borderRadius: "30px",
           }}
         ></Card>
-        <Badge badgeContent="Technical" color="info" overlap="circular" component="Card">
+        <Badge badgeContent={blog.topic} color="info" overlap="circular" component="Card">
         <Card
           sx={{
             width: "36vw",
@@ -33,9 +35,9 @@ const BlogCard = () => {
           }}
         >
           <CardContent sx={{marginLeft:"11vw",display:"flex",flexDirection:"column"}}>
-            <Typography variant="h5" fontWeight={500}>
+            <Typography variant="h5" fontWeight={500} sx ={{textTransform:"capitalize"}}>
               <strong>
-                <em>Blog Title</em>
+                  <em>{blog.title}</em>
               </strong>
             </Typography>
             <p style={{color:"grey",margin:"0px"}}>Author: Divya Kekade</p>
@@ -43,7 +45,7 @@ const BlogCard = () => {
             <p>blog contents...</p>
           </CardContent>
           <CardActions sx={{ml:"12vw",mt:"2vh"}}>
-              <Button variant="outlined">Read full blog</Button>
+              <Button variant="outlined" onClick ={()=>navigate(`/singleblog/${blog._id}`)}>Read full blog</Button>
           </CardActions>
         </Card>
         </Badge>

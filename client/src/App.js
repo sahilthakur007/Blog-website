@@ -16,6 +16,7 @@ function App() {
         <Route path="/signup" exact element={<Signup />} />
         <Route path="/singleblog/:id" element={<SingleBlog/>} />
         <Route path="/createBlog" element={<CreateBlog/>} />
+        <Route path="/createBlog/:id" element={<CreateBlog/>} />
       </Routes>
     </>
   );

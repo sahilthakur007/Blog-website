@@ -42,6 +42,7 @@ export default () => {
             <Box
               sx={{
                 flexGrow: 1,
+                display:{lg:"block",xs:"none"}
               }}
             >
               <TextField
