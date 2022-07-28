@@ -20,7 +20,10 @@ export default () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { userInfo } = useSelector((state) => state.authReducer);
-  console.log(userInfo);
+  const { blogs } = useSelector((state) => state.blogsReducer.blogs);
+ // blog array
+  
+  // add search filter here 
   const handleLogout = () => {
     dispatch(logoutUser());
   };
@@ -84,6 +87,7 @@ export default () => {
                       fontSize: "19px",
                       textTransform: "none",
                     }}
+                    onClick ={()=>navigate("/myblog")}
                   >
                     My Blogs
                   </Button>

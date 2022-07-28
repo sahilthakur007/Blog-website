@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Typography,
   Paper,
@@ -64,9 +64,19 @@ export default () => {
   const handleEdit = () => {
     navigate(`/createblog/${id}`)
   }
+  useEffect(() => {
+    const id = userInfo.user._id;
+
+    console.log(singleBlog.Likes);
+    const present = singleBlog.Likes.find((like) => like.likedUser == id);
+    if (present) setliked(true);
+    // console.log(singleBlog.user);
+  },[])
   const likeHandler = () => {
-    dispatch(addLike(id));
-    setliked((prev) => !prev);
+    const present = singleBlog.Likes.find((like) => like.likedUser == id);
+    if (!present) dispatch(addLike(id));
+    
+    // setliked((prev) => !prev);
   }
   return (
     <>
@@ -116,39 +126,43 @@ export default () => {
             </p>
           </Typography>
         </Box>
-        <Stack
-          spacing={2}
-          direction="row"
-          sx={{
-            justifyContent: "right",
-            alignItems: "center",
-            mr: "5%",
-            mt: "2%",
-          }}
-        >
-          <IconButton onClick={handleEdit}
-            size="large"
-            sx={{
-              borderRadius: "100%",
-              p: "2px",
-            }}
-          >
-            <EditIcon
+        {
+          userInfo.user._id == singleBlog.userId && (
+            <Stack
+              spacing={2}
+              direction="row"
               sx={{
-                fontSize: "40px",
-                color: "#000",
+                justifyContent: "right",
+                alignItems: "center",
+                mr: "5%",
+                mt: "2%",
               }}
-            />
-          </IconButton>
-          <IconButton onClick={handleDelete}>
-            <DeleteIcon
-              sx={{
-                fontSize: "40px",
-                color: "#000",
-              }}
-            />
-          </IconButton>
-        </Stack>
+            >
+              <IconButton onClick={handleEdit}
+                size="large"
+                sx={{
+                  borderRadius: "100%",
+                  p: "2px",
+                }}
+              >
+                <EditIcon
+                  sx={{
+                    fontSize: "40px",
+                    color: "#000",
+                  }}
+                />
+              </IconButton>
+              <IconButton onClick={handleDelete}>
+                <DeleteIcon
+                  sx={{
+                    fontSize: "40px",
+                    color: "#000",
+                  }}
+                />
+              </IconButton>
+            </Stack>
+          )
+        }
         <Stack
           spacing={2}
           direction="row"
@@ -175,14 +189,7 @@ export default () => {
               )
             }
           </IconButton>
-          <IconButton>
-            <ThumbDownIcon
-              sx={{
-                fontSize: "40px",
-                color: "#000",
-              }}
-            />
-          </IconButton>
+          
           <IconButton onClick={commentHandler}>
             <CommentIcon
               sx={{

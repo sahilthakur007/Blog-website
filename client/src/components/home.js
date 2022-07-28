@@ -7,6 +7,7 @@ import { ThemeProvider } from "@mui/material";
 import { customTheme } from "../Theme";
 import { useNavigate } from "react-router-dom";
 
+
 const slideImages = [
   {
     url: "https://images.unsplash.com/photo-1509721434272-b79147e0e708?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
@@ -34,7 +35,9 @@ const properties = {
   easing: "ease",
 };
 const Home = () => {
-  const navigate =useNavigate();
+  const navigate = useNavigate();
+
+   
   return (
     <Box>
       <div

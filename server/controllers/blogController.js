@@ -10,7 +10,7 @@ exports.storeBlog = async (req, res) => {
     }
     try {
         const blog = await Blogs.create({
-            topic, title, image, content, userId:req.user._id
+            topic, title, image, content, userId: req.user._id
         })
         if (!blog) {
             return res.status(500).json({
@@ -84,22 +84,22 @@ exports.updateBlog = async (req, res) => {
 exports.addComment = async (req, res) => {
     const { comment, commentUserName } = req.body;
     const id = req.params.id;
-    if (!comment || !commentUserName||!id) {
+    if (!comment || !commentUserName || !id) {
         return res.status(400).json({
             message: "missing some value"
         })
 
     }
-   
+
     if (!req.user) {
         return res.status(400).json({
             message: "missing some value"
         })
     }
-    
+
 
     try {
-        const blog = await Blogs.findById({ _id:id });
+        const blog = await Blogs.findById({ _id: id });
         if (!blog) {
             return res.status(400).json({
                 message: "blog not found"
@@ -124,13 +124,12 @@ exports.addComment = async (req, res) => {
 }
 exports.addLike = async (req, res) => {
     const id = req.params.id;
-    if (!req.user||!id)
-    {
+    if (!req.user || !id) {
         return res.status(400).json({
             message: "Please log In "
         })
     }
-    
+
     console.log(id);
     try {
         const blog = await Blogs.findById({ _id: id });
@@ -139,17 +138,26 @@ exports.addLike = async (req, res) => {
                 message: "blog not found"
             })
         }
-        const addlikedUser = {
-            likedUser: req.user._id
-        }
-        blog.Likes.push(addlikedUser)
+        // const present = blog.Likes.find((like) => like.likedUser == req.user._id)
+        // console.log(present)
+        // if (present) {
+        //     const newlikes = blog.Likes.filter((like) => likedUser != req.user._id);
+        //     // blog.Likes = newlikes;
+
+        // }
+        // else {
+            const addlikedUser = {
+                likedUser: req.user._id
+            }
+            blog.Likes.push(addlikedUser)
+        // }
+
         blog.save();
         return res.status(200).json({
             blog
         })
     }
-    catch (error)
-    {
+    catch (error) {
         return res.status(500).json({
             message: "some thing is wrong"
         })
