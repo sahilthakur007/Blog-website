@@ -138,8 +138,9 @@ exports.addLike = async (req, res) => {
                 message: "blog not found"
             })
         }
-        // const present = blog.Likes.find((like) => like.likedUser == req.user._id)
-        // console.log(present)
+        const present =blog.Likes.find((like) => like.likedUser == req.user._id)
+        console.log(present)
+        
         // if (present) {
         //     const newlikes = blog.Likes.filter((like) => likedUser != req.user._id);
         //     // blog.Likes = newlikes;
