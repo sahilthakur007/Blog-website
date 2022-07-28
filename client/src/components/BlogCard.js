@@ -21,7 +21,7 @@ const BlogCard = ({ blog }) => {
             borderRadius: "30px",
           }}
         ></Card>
-        <Badge badgeContent={blog.topic} color="info" overlap="circular" component="Card">
+        <Badge badgeContent={blog.topic} color="info" overlap="circular" component="Card" sx={{textTransform:"capitalize"}}>
         <Card
           sx={{
             width: "36vw",

@@ -23,7 +23,16 @@ export default () => {
   const { blogs } = useSelector((state) => state.blogsReducer.blogs);
  // blog array
   
-  // add search filter here 
+  // add search filter here
+  const [searchValue,setSearchValue]=useState("") 
+  const searchHandler = () => {
+    if(searchValue !== "")
+    {
+      blogs.filter((blog)=>{
+        return blog.title.toLowerCase().includes(searchValue.toLowerCase())
+      })
+    }
+  }
   const handleLogout = () => {
     dispatch(logoutUser());
   };
@@ -45,19 +54,24 @@ export default () => {
             <Box
               sx={{
                 flexGrow: 1,
-                display:{lg:"block",xs:"none"}
+                display:"flex",
+                alignItems:"center"
               }}
             >
               <TextField
-                placeholder="search"
+                placeholder="type to search..."
                 size="small"
+                value={searchValue}
                 sx={{
                   backgroundColor: "#fff",
                   ml: "50px",
-                  width: "400px",
+                  width: "300px",
                   borderRadius: "4px",
+                  mr:"8px"
                 }}
+                onChange={(e)=>{setSearchValue(e.target.value)}}
               />
+              <Button variant="outlined" color="white" onClick={searchHandler}>Search</Button>
             </Box>
             <Stack direction="row" spacing={2}>
               <Button

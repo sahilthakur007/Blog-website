@@ -7,6 +7,9 @@ export const customTheme= createTheme({
         },
         transparent:{
             main:"#1fef"
+        },
+        white:{
+            main:"#fff"
         }
     }
 })

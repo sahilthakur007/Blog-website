@@ -62,17 +62,15 @@ const Signin = () => {
             variant="contained"
             color="error"
             onClick={formSubmitHandler}
-            sx={{ width: "40%", mt: "15px", mb: "40px" }}
+            sx={{ width: "40%", mt: "15px", mb: "40px", backgroundImage: "linear-gradient(to left, red, #ff9100)" }}
           >
             Sign in
           </Button>
         </ThemeProvider>
         <label style={{ color: "grey" }}>New user?</label>
-        <Link to="/signup">
-          <Button color="secondary" variant="contained" sx={{ mt: "2px" }}>
-            Sign up
+        <Button variant="contained" color="secondary"sx={{ mt: "2px"}} onClick={()=>{navigate("/signup")}}>
+        Create Account
           </Button>
-        </Link>
       </Box>
     </Box>
   );
