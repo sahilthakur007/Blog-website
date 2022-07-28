@@ -13,14 +13,17 @@ import {
 import { ThemeProvider } from "@mui/material";
 import { customTheme } from "../Theme";
 import { useSelector, useDispatch } from "react-redux";
-
 import { logoutUser } from "../Redux/actions/authAction";
 import { useNavigate } from "react-router-dom";
+
 export default () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { userInfo } = useSelector((state) => state.authReducer);
-  console.log(userInfo);
+  const { blogs } = useSelector((state) => state.blogsReducer.blogs);
+  // blog array
+   
+   // add search filter here 
   const handleLogout = () => {
     dispatch(logoutUser());
   };
@@ -42,18 +45,22 @@ export default () => {
             <Box
               sx={{
                 flexGrow: 1,
+                display:"flex",
+                alignItems:"center"
               }}
             >
               <TextField
-                placeholder="search"
+                placeholder="type to search..."
                 size="small"
                 sx={{
                   backgroundColor: "#fff",
                   ml: "50px",
-                  width: "400px",
+                  width: "300px",
                   borderRadius: "4px",
+                  mr:"8px"
                 }}
               />
+              <Button variant="outlined" color="white">Search</Button>
             </Box>
             <Stack direction="row" spacing={2}>
               <Button
@@ -83,6 +90,7 @@ export default () => {
                       fontSize: "19px",
                       textTransform: "none",
                     }}
+                    onClick ={()=>navigate("/myblog")}
                   >
                     My Blogs
                   </Button>

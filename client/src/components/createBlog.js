@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux"
+import { sendBlog ,updateBlog} from "../Redux/actions/blogsactoion"
+import { useNavigate, useParams } from "react-router-dom"
+import { useSelector } from "react-redux";
+
 import {
   TextField,
   Box,
@@ -9,25 +14,54 @@ import {
 } from "@mui/material";
 
 export default () => {
-    const [blogdetails,setblogdetails] = useState({
-        title: "",
-        topic: "",
-        content: "",
-        image:""
-    })
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { blogs } = useSelector((state) => state.blogsReducer.blogs);
+  const { id } = useParams();
+  const singleBlog = blogs?.find((blog) => blog._id == id)
+  console.log(id)
+  const [image, setimage] = useState("");
+  let initialState;
+  if (id) {
+    console.log(singleBlog)
+    const { title, topic, content } = singleBlog;
+    initialState = {
+      title: title,
+      topic: topic,
+      content: content,
+
+    }
+  }
+  else {
+    initialState = {
+      title: "",
+      topic: "",
+      content: "",
+
+    }
+  }
+
+  const [blogdetails, setblogdetails] = useState(initialState)
 
   const imageHandler = (e) => {
-      let img = URL.createObjectURL(e.target.files[0]);
-      setblogdetails({ ...blogdetails, [e.target.name]: img });
-       
-    };
-    const handleChange = (e) => {
-        console.log(e.target.value);
-        setblogdetails({ ...blogdetails, [e.target.name]: e.target.value });
-    }
-    const handleClick = (e) => {
-        console.log(blogdetails)
-    }
+    let img = e.target.files[0];
+    setimage(URL.createObjectURL(img))
+  };
+  const handleChange = (e) => {
+    console.log(e.target.value);
+    setblogdetails({ ...blogdetails, [e.target.name]: e.target.value });
+  }
+  const handleClick = (e) => {
+    const newblog = { ...blogdetails, image };
+    dispatch(sendBlog(newblog, navigate));
+    console.log(newblog)
+  }
+  const handleupdate = (e) => {
+    const newblog = { ...blogdetails, image };
+    dispatch(updateBlog(newblog,id,navigate));
+    console.log(newblog)
+  }
   return (
     <Box
       sx={{
@@ -49,16 +83,17 @@ export default () => {
         >
           Welcome to create your own blog
         </Typography>
-              <TextField
-                  name="topic"
-                  
+        <TextField
+          name="topic"
+          value={blogdetails.topic}
           select
           fullWidth
           label="select Your blog topic"
+
           sx={{
             mt: "6%",
-                  }}
-                  onChange ={handleChange}
+          }}
+          onChange={handleChange}
         >
           <MenuItem value="technical">Technical</MenuItem>
           <MenuItem value="cooking">Cooking</MenuItem>
@@ -72,10 +107,10 @@ export default () => {
           sx={{
             mt: "3%",
             mb: "3%",
-                  }}
-                  name="title"
-                  value={blogdetails.title}
-            onChange ={handleChange}
+          }}
+          name="title"
+          value={blogdetails.title}
+          onChange={handleChange}
         />
         <Box
           sx={{
@@ -87,10 +122,10 @@ export default () => {
         >
           <label>Upload image for your blog</label>
           <TextField
-                      fullwidth
-                      name = "image"
-                      type="file"
-                      value ={blogdetails.topic}
+            fullwidth
+            name="image"
+            type="file"
+            value={blogdetails.image}
             onChange={(e) => {
               imageHandler(e);
             }}
@@ -100,23 +135,41 @@ export default () => {
           placeholder="Write your blog here "
           rows={20}
           cols={102}
-                  wrap="hard"
-                  onChange={handleChange}
-                  name= "content"
-                  style={{ resize: "none", fontSize: "24px" }}
+          wrap="hard"
+          onChange={handleChange}
+          name="content"
+          value = {blogdetails.content}
+          style={{ resize: "none", fontSize: "24px" }}
         ></textarea>
-        <Button
-          variant="contained"
-                  color="warning"
-                  onClick ={handleClick}
-          sx={{
-            mt: "3%",
-            justifyContent: "center",
-          }}
-        >
-          Post
-        </Button>
+        {
+          !id ? (<Button
+            variant="contained"
+            color="warning"
+            size="large"
+            onClick={handleClick}
+            sx={{
+              mt: "3%",
+              justifyContent: "center",
+            }}
+          >
+            Post
+          </Button>) : (
+              <Button
+                variant="contained"
+                color="warning"
+                size="large"
+                onClick={handleupdate}
+                sx={{
+                  mt: "3%",
+                  justifyContent: "center",
+                  backgroundImage: "linear-gradient(to left, red, #ff9100)"
+                }}
+              >
+                Update Post
+              </Button>
+          )
+        }
       </Paper>
-    </Box>
+    </Box >
   );
 };

@@ -1,7 +1,7 @@
-import { Box, Button, Card, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import { ThemeProvider } from "@mui/material";
 import { customTheme } from "../Theme";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { signInUser } from "../Redux/actions/authAction";
 import { useDispatch } from "react-redux";
@@ -23,7 +23,7 @@ const Signin = () => {
       <Box
         component="form"
         sx={{
-          width: "45%",
+          width: "60vh",
           backgroundColor: "white",
           p: "2%",
           display: "flex",
@@ -60,19 +60,17 @@ const Signin = () => {
         <ThemeProvider theme={customTheme}>
           <Button
             variant="contained"
-            color="error"
+            // color="error"
             onClick={formSubmitHandler}
-            sx={{ width: "40%", mt: "15px", mb: "40px" }}
+            sx={{ width: "40%", mt: "15px", mb: "40px", backgroundImage: "linear-gradient(to left, red, #ff9100)"}}
           >
             Sign in
           </Button>
         </ThemeProvider>
         <label style={{ color: "grey" }}>New user?</label>
-        <Link to="/signup">
-          <Button color="secondary" variant="contained" sx={{ mt: "2px" }}>
-            Sign up
+          <Button variant="contained" color="secondary"sx={{ mt: "2px"}} onClick={()=>{navigate("/signup")}}>
+            Create Account
           </Button>
-        </Link>
       </Box>
     </Box>
   );

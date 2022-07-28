@@ -1,13 +1,46 @@
 import BlogCard from "./BlogCard"
+import BlogCardSmall from "./BlogCardSmall"
+//import blogs from "../BlogData";
+import { useEffect } from "react"
+import { useDispatch ,useSelector} from "react-redux"
+import { storeallblogs } from "../Redux/actions/blogsactoion"
 
-const BlogCards = () =>{
+const filters = [
+    "All",
+    "Trending",
+    "Technical",
+    "Environmental",
+    "Music",
+    "History",
+    "Cooking",
+    "Tourism",
+    "Health",
+];
+const BlogCards = (props) =>{
+    const dispatch = useDispatch();
+    useEffect(() => {
+        const getBlogs = async () => {
+            dispatch(storeallblogs())
+        }
+        getBlogs();
+    }, [])
+    const {blogs} = useSelector((state) => state.blogsReducer.blogs);
+    
+
+
+    //-----------------
+    
+
+    //------
+    console.log(blogs);
     return(
+        <>
         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr"}}>
-        <BlogCard />
-        <BlogCard />
-        <BlogCard />
-        <BlogCard />
+        {blogs&& (blogs.map((blog) => (
+                <BlogCard blog={blog} />
+            )))}
         </div>
+        </>
     )
 }
 export default BlogCards

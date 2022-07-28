@@ -1,52 +1,50 @@
 import { Card, Typography, CardContent, CardActions, Button, Badge } from "@mui/material";
 import { Box } from "@mui/system";
-import dateFormat from "dateformat"
-import { useNavigate } from "react-router-dom";
 
-const BlogCard = ({ blog }) => {
-  const navigate = useNavigate();
+const BlogCardSmall = () => {
   return (
     <>
-      <Box sx={{ display: "flex", alignItems: "center", margin: "20px" }}>
+      <Box sx={{ display: "flex",flexDirection:"column", alignItems: "center", margin: "20px" }}>
         <Card
           sx={{
             backgroundColor: "#1fef",
-            height: "26vh",
-            width: "20vw",
+            height: "22vh",
+            width: "32vh",
             zIndex: "1",
             backgroundImage:
               "url(https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80)",
             backgroundRepeat: "no-repeat",
-            backgroundSize: "20vw 26vh",
+            backgroundSize: "32vh 22vh",
             boxShadow: "3px 3px 8px grey",
             borderRadius: "30px",
           }}
         ></Card>
-        <Badge badgeContent={blog.topic} color="info" overlap="circular" component="Card">
+        <Badge badgeContent="Technical" color="info" overlap="circular" component="Card">
         <Card
           sx={{
-            width: "36vw",
-            height: "32vh",
+            width: "40vh",
+            height: "41vh",
           //  display: "flex",
             alignItems: "center",
-            marginLeft: "-11vw",
+          //  marginLeft: "-11vw",
+          marginTop:"-9vh",
             boxShadow: "3px 3px 8px grey",
             border: "1px solid grey",
             borderRadius: "8px",
           }}
         >
-          <CardContent sx={{marginLeft:"11vw",display:"flex",flexDirection:"column"}}>
+          <CardContent sx={{mt:"9vh",display:"flex",flexDirection:"column"}}>
             <Typography variant="h5" fontWeight={500}>
               <strong>
-                <em>{blog.title}</em>
+                <em>Blog Title</em>
               </strong>
             </Typography>
             <p style={{color:"grey",margin:"0px"}}>Author: Divya Kekade</p>
-            <p style={{color:"grey",margin:"0px"}}>Date: {dateFormat(blog.createdAt,"mmmm dS, yyyy")}</p>
-            <p>{blog.content}</p>
+            <p style={{color:"grey",margin:"0px"}}>Date: 24-07-2022</p>
+            <p>blog contents...</p>
           </CardContent>
-          <CardActions sx={{ml:"12vw"}}>
-              <Button variant="outlined" onClick ={()=>navigate(`/singleblog/${blog._id}`)}>Read full blog</Button>
+          <CardActions sx={{mt:"2vh"}}>
+              <Button variant="outlined">Read full blog</Button>
           </CardActions>
         </Card>
         </Badge>
@@ -54,4 +52,4 @@ const BlogCard = ({ blog }) => {
     </>
   );
 };
-export default BlogCard;
+export default BlogCardSmall;
