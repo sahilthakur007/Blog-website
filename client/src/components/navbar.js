@@ -13,7 +13,7 @@ import {
 import { ThemeProvider } from "@mui/material";
 import { customTheme } from "../Theme";
 import { useSelector, useDispatch } from "react-redux";
-
+import { filterBySearch } from "../Redux/actions/filterAction"
 import { logoutUser } from "../Redux/actions/authAction";
 import { useNavigate } from "react-router-dom";
 export default () => {
@@ -25,13 +25,15 @@ export default () => {
   
   // add search filter here
   const [searchValue,setSearchValue]=useState("") 
-  const searchHandler = () => {
-    if(searchValue !== "")
-    {
-      blogs.filter((blog)=>{
-        return blog.title.toLowerCase().includes(searchValue.toLowerCase())
-      })
-    }
+  const searchHandler = (e) => {
+    // if(searchValue !== "")
+    // {
+    //   blogs.filter((blog)=>{
+    //     return blog.title.toLowerCase().includes(searchValue.toLowerCase())
+    //   })
+    // }
+    // console.log(searchValue)
+    dispatch(filterBySearch(searchValue))
   }
   const handleLogout = () => {
     dispatch(logoutUser());

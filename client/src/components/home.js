@@ -4,6 +4,7 @@ import "react-slideshow-image/dist/styles.css";
 import BlogCards from "./BlogCards";
 import EditIcon from "@mui/icons-material/Edit";
 import { ThemeProvider } from "@mui/material";
+
 import { customTheme } from "../Theme";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -34,19 +35,32 @@ const properties = {
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [blogList, setBlogList] = useState([]);
+  const searchValue = useSelector((state) => state.filterReducer);
+  
+  // const [blogList, setBlogList] = useState([]);
+  const { blogs } = useSelector((state) => state.blogsReducer.blogs);
+
+  const [blogList, setBlogList] = useState(blogs);
+  useEffect(() => {
+    if (searchValue !== "") {
+      console.log(searchValue);
+      setBlogList((prev) => prev.filter((blog) => (
+        blog.title.toLowerCase().includes(searchValue.toLowerCase())
+      )))
+    }
+  },[searchValue])
+   
+  
   useEffect(() => {
     const getBlogs = async () => {
       dispatch(storeallblogs());
     };
     getBlogs();
   }, []);
-  const { blogs } = useSelector((state) => state.blogsReducer.blogs);
 
-  // const [blogList, setBlogList] = useState(blogs);
-  useEffect(() => {
-    setBlogList(blogs);
-  }, [blogs]);
+  // useEffect(() => {
+  //   setBlogList(blogs);
+  // }, [blogs]);
   const filterHandler = (e) => {
     if (e.target.id === "All") {
       setBlogList(blogs);

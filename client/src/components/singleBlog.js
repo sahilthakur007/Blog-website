@@ -80,7 +80,7 @@ export default () => {
   }, [])
   const likeHandler = () => {
     const present = singleBlog.Likes.find((like) => like.likedUser == userInfo.user._id);
-    console.log(`present ${present}`);
+    console.log(present);
 
     // if (!present) {
       dispatch(addLike(id));

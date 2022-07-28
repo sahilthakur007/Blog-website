@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux"
+// import FileBase from "react-file-base64"
 import { sendBlog ,updateBlog} from "../Redux/actions/blogsactoion"
 import { useNavigate, useParams } from "react-router-dom"
 import { useSelector } from "react-redux";
@@ -112,6 +113,25 @@ export default () => {
           value={blogdetails.title}
           onChange={handleChange}
         />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            // width: "90%",
+            mb: "3%",
+          }}
+        >
+          <label>Upload image for your blog</label>
+          <TextField
+            fullwidth
+            name="image"
+            type="file"
+            value={blogdetails.image}
+            onChange={(e) => {
+              imageHandler(e);
+            }}
+          />
+        </Box>
         <Box
           sx={{
             display: "flex",
