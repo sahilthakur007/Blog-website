@@ -150,6 +150,7 @@ export default () => {
             sx={{
               mt: "3%",
               justifyContent: "center",
+              backgroundImage: "linear-gradient(to left, red, #ff9100)"
             }}
           >
             Post
@@ -162,6 +163,7 @@ export default () => {
                 sx={{
                   mt: "3%",
                   justifyContent: "center",
+                  backgroundImage: "linear-gradient(to left, red, #ff9100)"
                 }}
               >
                 Update Post

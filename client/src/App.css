@@ -39,3 +39,11 @@
 .ck-editor__editable_inline {
   min-height: 500px;
 }
+input[type=file]::file-selector-button {
+  border: 2px solid ;  
+  border-radius: 5px;
+  background-color: #ff9100;
+  /* transition: 1s; */
+  color: white;
+  /* margin-bottom: 15px; */
+}
