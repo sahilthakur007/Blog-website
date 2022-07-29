@@ -1,4 +1,4 @@
-import { Card, Typography, CardContent, CardActions, Button, Badge } from "@mui/material";
+import { Card, Typography, CardContent, CardActions, Button, Badge ,CardMedia} from "@mui/material";
 import { Box } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 
@@ -14,13 +14,16 @@ const BlogCard = ({ blog }) => {
             width: "20vw",
             zIndex: "1",
             backgroundImage:
-              "url(https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80)",
+              `url(${blog.image})`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "20vw 26vh",
             boxShadow: "3px 3px 8px grey",
             borderRadius: "30px",
           }}
-        ></Card>
+        >
+
+        </Card>
+
         <Badge badgeContent={blog.topic} color="info" overlap="circular" component="Card" sx={{textTransform:"capitalize"}}>
         <Card
           sx={{

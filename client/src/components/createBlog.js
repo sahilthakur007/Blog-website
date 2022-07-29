@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux"
-// import FileBase from "react-file-base64"
+import FileBase from "react-file-base64"
 import { sendBlog ,updateBlog} from "../Redux/actions/blogsactoion"
 import { useNavigate, useParams } from "react-router-dom"
 import { useSelector } from "react-redux";
@@ -31,7 +31,7 @@ export default () => {
       title: title,
       topic: topic,
       content: content,
-
+     
     }
   }
   else {
@@ -39,6 +39,7 @@ export default () => {
       title: "",
       topic: "",
       content: "",
+      image:""
 
     }
   }
@@ -54,14 +55,14 @@ export default () => {
     setblogdetails({ ...blogdetails, [e.target.name]: e.target.value });
   }
   const handleClick = (e) => {
-    const newblog = { ...blogdetails, image };
-    dispatch(sendBlog(newblog, navigate));
-    console.log(newblog)
+    // const newblog = { ...blogdetails, image };
+    dispatch(sendBlog(blogdetails, navigate));
+    console.log(blogdetails)
   }
   const handleupdate = (e) => {
-    const newblog = { ...blogdetails, image };
-    dispatch(updateBlog(newblog,id,navigate));
-    console.log(newblog)
+   
+    dispatch(updateBlog(blogdetails,id,navigate));
+    // console.log(newblog)
   }
   return (
     <Box
@@ -113,6 +114,7 @@ export default () => {
           value={blogdetails.title}
           onChange={handleChange}
         />
+       
         <Box
           sx={{
             display: "flex",
@@ -122,34 +124,13 @@ export default () => {
           }}
         >
           <label>Upload image for your blog</label>
-          <TextField
-            fullwidth
-            name="image"
-            type="file"
-            value={blogdetails.image}
-            onChange={(e) => {
-              imageHandler(e);
-            }}
-          />
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            // width: "90%",
-            mb: "3%",
-          }}
-        >
-          <label>Upload image for your blog</label>
-          <TextField
-            fullwidth
-            name="image"
-            type="file"
-            value={blogdetails.image}
-            onChange={(e) => {
-              imageHandler(e);
-            }}
-          />
+          <div className="formComponent" style={{
+            border: "1px solid gray",
+            padding: "1%",
+            borderRadius: "4px"
+          }}>
+            <FileBase type="file" multiple={false} onDone={({ base64 }) => setblogdetails({ ...blogdetails, image: base64 })}></FileBase>
+          </div>
         </Box>
         <textarea
           placeholder="Write your blog here "

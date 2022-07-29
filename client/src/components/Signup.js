@@ -2,6 +2,7 @@ import { Box, Button, Card, TextField } from "@mui/material";
 import { ThemeProvider } from "@mui/material";
 import { customTheme } from "../Theme";
 import { Link } from "react-router-dom";
+import FileBase from "react-file-base64"
 import { useState } from "react";
 import { loginUser } from "../Redux/actions/authAction"
 import { useDispatch } from "react-redux";
@@ -9,22 +10,18 @@ import { useNavigate } from "react-router-dom";
 const Signup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [userinfo, setUserinfo] = useState({ name: "", email: "", password: "" })
-  const [photo, setPhoto] = useState("");
+  const [userinfo, setUserinfo] = useState({ name: "", email: "", password: "",photo:"" })
+ 
   const userInputHandler = (e) => {
     const updatedUserInfo = { ...userinfo }
     updatedUserInfo[e.target.id] = e.target.value
     setUserinfo(updatedUserInfo)
   }
-  const photoHandler = (e) => {
-    let pic = e.target.files[0]
-
-    setPhoto(URL.createObjectURL(pic))
-  }
+ 
   const formSubmitHandler = (e) => {
-    const newuserinfo = { ...userinfo, photo };
 
-    dispatch(loginUser(newuserinfo,navigate));
+
+    dispatch(loginUser(userinfo,navigate));
  
   }
   
@@ -76,11 +73,13 @@ const Signup = () => {
         />
         <Box sx={{ display: "flex", flexDirection: "column", width: "90%", mt: "10px" }}>
           <label>Upload your profile photo</label>
-          <TextField
-            type="file"
-            size="small"
-            onChange={(e) => { photoHandler(e) }}
-          />
+          <div className="formComponent" style={{
+            border: "1px solid gray",
+            padding: "1%",
+            borderRadius:"4px"
+          }}>
+            <FileBase type="file" multiple={false} onDone={({ base64 }) => setUserinfo({ ...userinfo, photo: base64 })}></FileBase>
+          </div>
         </Box>
         <ThemeProvider theme={customTheme}>
           <Button
