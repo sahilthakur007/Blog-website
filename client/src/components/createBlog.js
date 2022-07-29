@@ -133,13 +133,13 @@ export default () => {
         </Box>
         <textarea
           placeholder="Write your blog here "
-          rows={20}
-          cols={102}
+          // rows={20}
+          // cols={102}
           wrap="hard"
           onChange={handleChange}
           name="content"
           value = {blogdetails.content}
-          style={{ resize: "none", fontSize: "24px" }}
+          style={{ resize: "none", fontSize: "24px", width:"99%",height:"50vh"}}
         ></textarea>
         {
           !id ? (<Button

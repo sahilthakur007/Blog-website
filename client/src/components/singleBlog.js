@@ -126,6 +126,16 @@ export default () => {
             </p>
           </Typography>
         </Box>
+        <Typography
+          variant="h6"
+          sx={{
+            mt: "40px",
+            mr: "5%",
+            textAlign: "right",
+          }}
+        >
+          Author: Sahil Thakur
+        </Typography>
         {
           userInfo.user._id == singleBlog.userId && (
             <Stack

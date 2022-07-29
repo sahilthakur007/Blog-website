@@ -19,11 +19,11 @@ const Signin = () => {
         // console.log(userinfo)
     }
   return (
-    <Box pt="100px" sx={{ display: "flex", justifyContent: "center" }}>
+    <Box pt="100px" sx={{ display: "flex", justifyContent: "center",mt:"10vh" }}>
       <Box
         component="form"
         sx={{
-          width: "45%",
+          width: "65vw",
           backgroundColor: "white",
           p: "2%",
           display: "flex",
@@ -62,13 +62,13 @@ const Signin = () => {
             variant="contained"
             color="error"
             onClick={formSubmitHandler}
-            sx={{ width: "40%", mt: "15px", mb: "40px", backgroundImage: "linear-gradient(to left, red, #ff9100)" }}
+            sx={{ width: "20vh", mt: "15px", mb: "40px", backgroundImage: "linear-gradient(to left, red, #ff9100)" }}
           >
             Sign in
           </Button>
         </ThemeProvider>
         <label style={{ color: "grey" }}>New user?</label>
-        <Button variant="contained" color="secondary"sx={{ mt: "2px"}} onClick={()=>{navigate("/signup")}}>
+        <Button variant="contained" color="secondary"sx={{ mt: "2px",mb:"1vh"}} onClick={()=>{navigate("/signup")}}>
         Create Account
           </Button>
       </Box>

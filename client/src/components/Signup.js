@@ -29,11 +29,11 @@ const Signup = () => {
   }
   
   return (
-    <Box pt="100px" sx={{ display: "flex", justifyContent: "center" }}>
+    <Box pt="100px" sx={{ display: "flex", justifyContent: "center",mt:"10vh" }}>
       <Box
         component="form"
         sx={{
-          width: "45%",
+          width: "65vw",
           backgroundColor: "white",
           p: "2%",
           display: "flex",
@@ -87,13 +87,13 @@ const Signup = () => {
             variant="contained"
             color="myColor"
             onClick={formSubmitHandler}
-            sx={{ width: "40%", mt: "15px", mb: "40px",backgroundImage: "linear-gradient(to left, red, #ff9100)"}}
+            sx={{ width: "20vh", mt: "15px", mb: "40px",backgroundImage: "linear-gradient(to left, red, #ff9100)"}}
           >
             Sign up
           </Button>
         </ThemeProvider>
         <label style={{ color: "grey" }}>Account already exists?</label>
-        <Button color="secondary" variant="contained" sx={{ mt: "2px" }} onClick={()=>{navigate("/signin")}}>Sign in</Button>
+        <Button color="secondary" variant="contained" sx={{ mt: "2px",mb:"1vh" }} onClick={()=>{navigate("/signin")}}>Sign in</Button>
       </Box>
     </Box>
   );
