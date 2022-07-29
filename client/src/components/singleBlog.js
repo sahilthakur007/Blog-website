@@ -36,15 +36,18 @@ export default () => {
   const [showComments, setShowCommnets] = useState(false);
   const { userInfo } = useSelector((state) => state.authReducer);
   // console.log(userInfo.user);
-  const commentUserName = userInfo.user.name;
+
+  let commentUserName;
+  if (userInfo.user)
+    commentUserName = userInfo.user.name;
   console.log(commentUserName);
   const [Fcomment, setcomment] = useState({
     comment: "",
   });
-  const [liked,setliked] = useState(false)
+  const [liked, setliked] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   const commentHandler = () => {
     setShowCommnets(!showComments);
   }
@@ -59,23 +62,31 @@ export default () => {
   }
   const handleDelete = () => {
     console.log("clicked")
-    dispatch(deleteBlog(id,navigate))
+    dispatch(deleteBlog(id, navigate))
   }
   const handleEdit = () => {
     navigate(`/createblog/${id}`)
   }
   useEffect(() => {
-    const id = userInfo.user._id;
+    let userid;
+    if (userInfo.user)
+      userid = userInfo.user._id;
 
     console.log(singleBlog.Likes);
-    const present = singleBlog.Likes.find((like) => like.likedUser == id);
+    const present = singleBlog.Likes.find((like) => like.likedUser == userid);
+    // console.log(`present ${present}`);
     if (present) setliked(true);
     // console.log(singleBlog.user);
-  },[])
+  }, [])
   const likeHandler = () => {
-    const present = singleBlog.Likes.find((like) => like.likedUser == id);
-    if (!present) dispatch(addLike(id));
-    
+    const present = singleBlog.Likes.find((like) => like.likedUser == userInfo.user._id);
+    console.log(present);
+
+    // if (!present) {
+      dispatch(addLike(id));
+      setliked(true);
+    // };
+
     // setliked((prev) => !prev);
   }
   return (
@@ -137,7 +148,7 @@ export default () => {
           Author: Sahil Thakur
         </Typography>
         {
-          userInfo.user._id == singleBlog.userId && (
+          userInfo.user && userInfo.user._id == singleBlog.userId && (
             <Stack
               spacing={2}
               direction="row"
@@ -173,7 +184,7 @@ export default () => {
             </Stack>
           )
         }
-        <Stack
+        {userInfo.user && (<Stack
           spacing={2}
           direction="row"
           sx={{
@@ -190,16 +201,16 @@ export default () => {
                   }}
                 />
               ) : (
-                  <ThumbUpOutlinedIcon
-                    sx={{
-                      fontSize: "40px",
-                      color: "#000",
-                    }}
-                  />
+                <ThumbUpOutlinedIcon
+                  sx={{
+                    fontSize: "40px",
+                    color: "#000",
+                  }}
+                />
               )
             }
           </IconButton>
-          
+
           <IconButton onClick={commentHandler}>
             <CommentIcon
               sx={{
@@ -208,7 +219,7 @@ export default () => {
               }}
             />
           </IconButton>
-        </Stack>
+        </Stack>)}
         <Divider />
 
         <List
