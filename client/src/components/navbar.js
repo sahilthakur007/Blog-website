@@ -131,7 +131,7 @@ export default () => {
                     Logout
                   </Button>
                   <Avatar
-                    alt="Profile photo"
+                    alt={userInfo.user.name}
                     src={userInfo.user.photo}
                   />
                 </>
