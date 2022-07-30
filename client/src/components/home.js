@@ -31,9 +31,12 @@ const properties = {
   infinite: true,
   easing: "ease",
 };
+
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { userInfo } = useSelector((state) => state.authReducer
+  )
   const searchValue = useSelector((state) => state.filterReducer);
   
   // const [blogList, setBlogList] = useState([]);
@@ -150,24 +153,26 @@ const Home = () => {
             <Chip label="Trending" sx={{height:"40px",boxShadow:"0px 1px 6px grey"}}>Technical</Chip>
         </Stack> */}
       <BlogCards blogs={blogList} />
-      <ThemeProvider theme={customTheme}>
-        <Tooltip
-          title="Write blog"
-          sx={{ position: "fixed", bottom: 20, right: 20, backgroundImage: "linear-gradient(to left, red, #ff9100)"}}
-        >
-          <Fab
-            variant="extended"
-            color="myColor"
-            aria-label="add"
-            onClick={() => {
-              navigate("/createBlog");
-            }}
+      {
+        userInfo && (<ThemeProvider theme={customTheme}>
+          <Tooltip
+            title="Write blog"
+            sx={{ position: "fixed", bottom: 20, right: 20, backgroundImage: "linear-gradient(to left, red, #ff9100)" }}
           >
-            <EditIcon sx={{ mr: 1 }} />
-            New Blog
-          </Fab>
-        </Tooltip>
-      </ThemeProvider>
+            <Fab
+              variant="extended"
+              color="myColor"
+              aria-label="add"
+              onClick={() => {
+                navigate("/createBlog");
+              }}
+            >
+              <EditIcon sx={{ mr: 1 }} />
+              New Blog
+            </Fab>
+          </Tooltip>
+        </ThemeProvider>)
+      }
     </Box>
   );
 };

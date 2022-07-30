@@ -18,7 +18,7 @@ export const sendBlog = (blog,navigate) => async (dispatch) => {
     try {
         const res = await storeblog(blog);
         const { data } = await getalllblogs();
-       
+        console.log(res);
         dispatch({
             type: "SEND_BLOG",
             payload:data

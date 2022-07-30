@@ -58,8 +58,9 @@ export default () => {
             <Box
               sx={{
                 flexGrow: 1,
-                display:"flex",
-                alignItems:"center"
+                // display:"flex",
+                alignItems: "center",
+                
               }}
             >
               <TextField
@@ -71,11 +72,14 @@ export default () => {
                   ml: "50px",
                   width: "300px",
                   borderRadius: "4px",
-                  mr:"8px"
+                  mr: "8px",
+                  
                 }}
                 onChange={(e)=>{setSearchValue(e.target.value)}}
               />
-              <Button variant="outlined" color="white" onClick={searchHandler}>Search</Button>
+              <Button variant="outlined" color="white" onClick={searchHandler}
+               
+              >Search</Button>
             </Box>
             <Stack direction="row" spacing={2}>
               <Button
@@ -130,7 +134,7 @@ export default () => {
                   </Button>
                   <Avatar
                     alt="Profile photo"
-                    src="/static/images/avatar/1.jpg"
+                    src={userInfo.user.photo}
                   />
                 </>
               )}
