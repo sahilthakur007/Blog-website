@@ -18,7 +18,7 @@ export default () => {
             navigate("/signup")
         }
         
-    }, [mybloglist])
+    }, [ userInfo])
    
    
     return (

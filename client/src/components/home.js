@@ -35,34 +35,40 @@ const properties = {
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { userInfo } = useSelector((state) => state.authReducer
-  )
-  const searchValue = useSelector((state) => state.filterReducer);
-  
-  // const [blogList, setBlogList] = useState([]);
-  const { blogs } = useSelector((state) => state.blogsReducer.blogs);
-
-  const [blogList, setBlogList] = useState(blogs);
-  useEffect(() => {
-    if (searchValue !== "") {
-      console.log(searchValue);
-      setBlogList((prev) => prev.filter((blog) => (
-        blog.title.toLowerCase().includes(searchValue.toLowerCase())
-      )))
-    }
-  },[searchValue])
-   
-  
   useEffect(() => {
     const getBlogs = async () => {
       dispatch(storeallblogs());
     };
     getBlogs();
   }, []);
+  const { userInfo } = useSelector((state) => state.authReducer
+  )
+  const searchValue = useSelector((state) => state.filterReducer);
+  
+  // const [blogList, setBlogList] = useState([]);
+  const { blogs } = useSelector((state) => state.blogsReducer.blogs);
+ 
+  const [blogList, setBlogList] = useState(blogs);
+  useEffect(() => {
+    if (searchValue !== "") {
+      console.log(searchValue);
+      setBlogList( blogs.filter((blog) => (
+        blog.title.toLowerCase().includes(searchValue.toLowerCase())
+      )))
+    }
+    else {
+      setBlogList(blogs);
+    }
+  },[searchValue])
 
-  // useEffect(() => {
-  //   setBlogList(blogs);
-  // }, [blogs]);
+
+
+  
+  console.log(blogs);
+console.log(blogList)
+  useEffect(() => {
+    setBlogList(blogs);
+  }, [blogs]);
   const filterHandler = (e) => {
     if (e.target.id === "All") {
       setBlogList(blogs);
