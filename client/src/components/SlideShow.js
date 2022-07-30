@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const slideImages = [
   {
-    id:1,
+    id: 1,
     url: "https://images.unsplash.com/photo-1509721434272-b79147e0e708?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
     caption: "Slide 1",
   },
@@ -39,10 +39,12 @@ const SlideShow = () => {
   return (
     <div style={{ marginTop: "2vh" }}>
       <Slide {...properties}>
-        {slideImages.map((slideImage, index) => (
+        {slideImages.map((slideImage) => (
           <div
             key={slideImage.id}
             style={{
+              height: "35vw",
+              width: "100%",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -57,21 +59,14 @@ const SlideShow = () => {
                 backgroundRepeat: "no-repeat",
                 display: "flex",
               }}
+             
             >
-              <h2 style={{ marginLeft: "1vw" }}>{slideImage.caption}</h2>
-              <Tooltip
-                title="Visit"
-                sx={{ ml: "66vw", mt: "1vw", height: "30px" }}
-              >
-                <Button
-                  variant="contained"
-                  onClick={() => {
-                    navigate(`/singleblog/${slideImage.id}`);
-                  }}
-                >
-                  Visit blog
-                </Button>
-              </Tooltip>
+              <p style={{ marginLeft: "1vw" }}>
+                <b style={{ fontSize: "25px" }}>{slideImage.caption}</b>{" "}
+                <u style={{ color: "white" }}  onClick={() => {
+                navigate(`/singleblog/${slideImage.id}`);
+              }}> click here</u>
+              </p>
             </div>
           </div>
         ))}

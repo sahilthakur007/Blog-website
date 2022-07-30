@@ -47,3 +47,127 @@ input[type=file]::file-selector-button {
   color: white;
   /* margin-bottom: 15px; */
 }
+
+.nav-menu-icon{
+  display: none;
+}
+.nav-search-bar{
+  display:flex;
+  align-items: center;
+  flex-grow: 1;
+}
+.nav-buttons{
+  display: flex;
+  align-items: center;
+}
+.blogcard-box{
+  display:flex; 
+  align-items: center;
+  margin: 20px;
+}
+.blogcard-image{
+  background-color: "#1fef";
+  height: 26vh;
+  width: 20vw;
+  z-index: 1;
+  /* background-image:url(https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80); */
+  background-repeat: no-repeat;
+  background-size: 20vw 26vh;
+  box-shadow: 3px 3px 8px grey;
+  border-radius: 30px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: end;
+}
+.blogcard-info{
+  width: 36vw;
+  height: 32vh;
+  align-items: center;
+  margin-left: -11vw;
+  box-shadow: 3px 3px 8px grey;
+  border: 1px solid grey;
+}
+.blogcard-cardcontent{
+  margin-left: 11vw;
+  display: flex;
+  flex-direction: column;
+}
+.blogcard-cardactions{
+  margin-left:12vw;
+  margin-top:2vh;
+}
+.blogcards{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+}
+@media screen and (max-width: 1020px) {
+  .nav-menu-icon{
+    display: block;
+  }
+  .nav-buttons{
+    display:none;
+  }
+}
+@media screen and (max-width: 1020px) {
+  .blogcards{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .blogcard-image{
+    width:40vw;
+    height: 26vh;
+    background-size: 50vw 26vh;
+  }
+  .blogcard-info{
+    width: 66vw;
+    margin-left: -20vw;
+  }
+  .blogcard-cardcontent{
+    margin-left: 20vw;
+  }
+  .blogcard-cardactions{
+    margin-left:22vw;
+  }
+}
+/* @media screen and (max-width: 870px) {
+  .blogcard-image{
+    width:40vw;
+    height: 26vh;
+    background-size: 50vw 26vh;
+  }
+  .blogcard-info{
+    width: 50vw;
+  }
+} */
+@media screen and (max-width: 650px) {
+  .nav-menu-icon{
+    display: block;
+  }
+  .nav-buttons{
+    display:none;
+  }
+}
+@media screen and (max-width: 600px) {
+  .blogcard-box{
+    flex-direction:column;
+  }
+  .blogcard-image{
+    width:64vw;
+    height: 22vh;
+    background-size: 64vw 22vh;
+  }
+  .blogcard-info{
+    width: 80vw;
+    margin-left: 0;
+    margin-top: -11vh;
+  }
+  .blogcard-cardcontent{
+    margin-top:11vh;
+    margin-left: 0px;
+  }
+  .blogcard-cardactions{
+    margin-top:-2vh;
+    margin-left: 0px;
+  }
+}

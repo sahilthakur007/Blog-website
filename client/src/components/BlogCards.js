@@ -32,7 +32,7 @@ const BlogCards = ({blogs}) => {
     // //------
     // console.log(blogs);
     return(
-        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr"}}>
+        <div className="blogcards">
             {blogs && (blogs.map((blog) => (
                 <BlogCard blog={blog} />
             )))}
