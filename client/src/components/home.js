@@ -4,7 +4,6 @@ import "react-slideshow-image/dist/styles.css";
 import BlogCards from "./BlogCards";
 import EditIcon from "@mui/icons-material/Edit";
 import { ThemeProvider } from "@mui/material";
-
 import { customTheme } from "../Theme";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -76,7 +75,7 @@ const Home = () => {
     <Box>
       <div
         style={{
-          backgroundImage:
+          background:
             "url(https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80)",
           backgroundRepeat: "no-repeat",
           height: "50vh",
@@ -100,7 +99,7 @@ const Home = () => {
         sx={{ mt: "4vh", ml: "5vw" }}
       >
         <strong>
-          <em>Blogs trending these days...</em>
+          <em>Visit trending blogs...</em>
         </strong>
       </Typography>
       <SlideShow />
@@ -117,23 +116,34 @@ const Home = () => {
             <Fab variant="extended" sx={{height:"40px",boxShadow:"0px 1px 6px grey"}}>Technical</Fab>
             <Fab variant="extended" sx={{height:"40px",boxShadow:"0px 1px 6px grey"}}>Environmental</Fab>
         </Stack> */}
-      <Stack direction="row" spacing={2} sx={{ m: "20px" }}>
+
+
+      {/* <Stack direction="row" spacing={2} sx={{ m: "20px" }}> */}
+      <div style={{display:"flex",margin:"20px",overflow:"auto",whiteSpace:"nowrap"}}>
         {filters.map((filter, index) => (
-          <Fab
-            variant="extended"
+          <button
             id={filter}
             key={index}
-            sx={{
+            style={{
               height: "40px",
-              width: "auto",
-              boxShadow: "0px 1px 6px grey",
+              boxShadow: "2px 2px 6px grey",
+              margin:"0px 0.5vw",
+              backgroundColor:"rgba(190, 190, 190,0.6)",
+              color:"black",
+              fontSize:"18px",
+              fontWeight:"bold",
+              borderRadius:"20px",
+              padding:"0px 15px"
             }}
             onClick={(e) => filterHandler(e)}
           >
-            {filter}
-          </Fab>
+            {filter.substring(0, 1).toUpperCase() + filter.substring(1)}
+          </button>
         ))}
-      </Stack>
+        </div>
+      {/* </Stack> */}
+
+
       {/* <Stack direction="row" spacing={2} sx={{m:"10px"}}>
             <Chip label="All" sx={{boxShadow:"0px 1px 6px grey"}}>All</Chip>
             <Chip variant="outlined" label="Technical" sx={{boxShadow:"0px 0.5px 6px grey"}}>Trending</Chip>

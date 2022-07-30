@@ -11,6 +11,7 @@ import {
   Avatar,
 } from "@mui/material";
 import { ThemeProvider } from "@mui/material";
+import DehazeIcon from '@mui/icons-material/Dehaze';
 import { customTheme } from "../Theme";
 import { useSelector, useDispatch } from "react-redux";
 import { filterBySearch } from "../Redux/actions/filterAction"
@@ -48,11 +49,12 @@ export default () => {
           }}
         >
           <Toolbar>
-            <Typography variant="h5" fontWeight={500}>
+            <Typography variant="h5" fontWeight={500} className="nav-logo">
               <strong>
                 <em>Easy Blog </em>
               </strong>
             </Typography>
+            <DehazeIcon className="nev-menu-icon"/>
             <Box
               sx={{
                 flexGrow: 1,

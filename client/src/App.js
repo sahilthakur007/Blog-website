@@ -7,10 +7,12 @@ import Signup from './components/Signup';
 import SingleBlog from './components/singleBlog';
 import CreateBlog from './components/createBlog';
 import MyBlog from "./components/myblog"
+import Nav from './components/Nav';
 function App() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
+      <Nav />
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/signin" exact element={<Signin />} />
