@@ -15,7 +15,7 @@ export default () => {
     } else {
       navigate("/signup");
     }
-  }, [mybloglist]);
+  }, [userInfo]);
 
   return (
     <>
