@@ -39,7 +39,6 @@ const Home = () => {
   )
   const searchValue = useSelector((state) => state.filterReducer);
   
-  // const [blogList, setBlogList] = useState([]);
   const { blogs } = useSelector((state) => state.blogsReducer.blogs);
 
   const [blogList, setBlogList] = useState(blogs);
@@ -106,21 +105,6 @@ const Home = () => {
         </strong>
       </Typography>
       <SlideShow />
-      {/* <Slide {...properties}>
-            {slideImages.map((each, index) => (
-              <div key={index} className="each-slide">
-                <img className="lazy" src={each.url} alt="sample" style={{height:"25vw"}}/>
-              </div>
-            ))}
-          </Slide> */}
-      {/* <Stack direction="row" spacing={2} sx={{m:"20px"}}>
-            <Fab variant="extended" sx={{height:"40px",boxShadow:"0px 1px 6px grey"}}>All</Fab>
-            <Fab variant="extended" sx={{height:"40px",boxShadow:"0px 1px 6px grey"}}>Trending</Fab>
-            <Fab variant="extended" sx={{height:"40px",boxShadow:"0px 1px 6px grey"}}>Technical</Fab>
-            <Fab variant="extended" sx={{height:"40px",boxShadow:"0px 1px 6px grey"}}>Environmental</Fab>
-        </Stack> */}
-
-
       {/* <Stack direction="row" spacing={2} sx={{ m: "20px" }}> */}
       <div style={{display:"flex",margin:"20px",overflow:"auto",whiteSpace:"nowrap"}}>
         {filters.map((filter, index) => (
@@ -136,7 +120,8 @@ const Home = () => {
               fontSize:"18px",
               fontWeight:"bold",
               borderRadius:"20px",
-              padding:"0px 15px"
+              padding:"0px 15px",
+              cursor:"pointer"
             }}
             onClick={(e) => filterHandler(e)}
           >
@@ -145,13 +130,6 @@ const Home = () => {
         ))}
         </div>
       {/* </Stack> */}
-
-
-      {/* <Stack direction="row" spacing={2} sx={{m:"10px"}}>
-            <Chip label="All" sx={{boxShadow:"0px 1px 6px grey"}}>All</Chip>
-            <Chip variant="outlined" label="Technical" sx={{boxShadow:"0px 0.5px 6px grey"}}>Trending</Chip>
-            <Chip label="Trending" sx={{height:"40px",boxShadow:"0px 1px 6px grey"}}>Technical</Chip>
-        </Stack> */}
       <BlogCards blogs={blogList} />
       {
         userInfo && (<ThemeProvider theme={customTheme}>

@@ -22,6 +22,7 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import CommentIcon from "@mui/icons-material/Comment";
+import dateFormat from "dateformat";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { sendComment, deleteBlog, addLike, storeallblogs } from "../Redux/actions/blogsactoion"
@@ -117,7 +118,7 @@ export default () => {
         {blogs && (
           <>
             <Typography
-              variant="h2"
+              variant="h3"
               sx={{
                 mt: "90px",
                 textAlign: "center",
@@ -134,7 +135,7 @@ export default () => {
                 textAlign: "right",
               }}
             >
-              26 August 2022
+              {dateFormat(singleBlog.createdAt,"mmmm dS, yyyy")}
             </Typography>
 
             <img src={singleBlog.image} className="blogImage" />
@@ -260,6 +261,7 @@ export default () => {
                   <Button onClick={submitComment} variant="contained" color="error" sx={{
                     textTransform: "capitalize",
                     mt: "2%",
+                    backgroundImage: "linear-gradient(to left, red, #ff9100)" 
 
                   }} >Post</Button>
                 </Box>

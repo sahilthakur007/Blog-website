@@ -22,17 +22,7 @@ const Signin = () => {
     <Box pt="100px" sx={{ display: "flex", justifyContent: "center",mt:"10vh" }}>
       <Box
         component="form"
-        sx={{
-          width: "65vw",
-          backgroundColor: "white",
-          p: "2%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          borderRadius: "15px",
-          alignItems: "center",
-          boxShadow: "2px 2px 6px grey",
-        }}
+        className="signup"
       >
         <TextField
           required

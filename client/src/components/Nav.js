@@ -10,14 +10,18 @@ import {
   Typography,
   Button,
   Avatar,
+  Backdrop,
 } from "@mui/material";
 import { ThemeProvider } from "@mui/material";
 import DehazeIcon from "@mui/icons-material/Dehaze";
+import SearchIcon from '@mui/icons-material/Search';
+import InputAdornment from '@mui/material/InputAdornment';
 import { customTheme } from "../Theme";
 import { useSelector, useDispatch } from "react-redux";
 import { filterBySearch } from "../Redux/actions/filterAction";
 import { logoutUser } from "../Redux/actions/authAction";
 import { useNavigate } from "react-router-dom";
+import Sidebar from "./Sidebar";
 const Nav = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,6 +31,7 @@ const Nav = () => {
 
   // add search filter here
   const [searchValue, setSearchValue] = useState("");
+  const [sidebar,setSidebar]=useState(false);
   const searchHandler = (e) => {
     // if(searchValue !== "")
     // {
@@ -68,6 +73,13 @@ const Nav = () => {
                   borderRadius: "4px",
                   mr: "8px",
                 }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon />
+                    </InputAdornment>
+                  ),
+                }}
                 onChange={(e) => {
                   setSearchValue(e.target.value);
                 }}
@@ -76,9 +88,10 @@ const Nav = () => {
                 Search
               </Button>
             </div>
-            <div className="nav-menu-icon">
-              <DehazeIcon />
-            </div>
+            {!sidebar && <div className="nav-menu-icon">
+              <DehazeIcon onClick={()=>{setSidebar(!sidebar)}}/>
+            </div>}
+            {sidebar && <Sidebar logout={handleLogout} userinfo={userInfo} close={()=>{setSidebar(!sidebar)}}/>}
             <div className="nav-buttons">
               <Button
                 onClick={() => navigate("/")}

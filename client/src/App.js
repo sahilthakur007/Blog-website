@@ -1,7 +1,6 @@
 import './App.css';
 import { Routes, Route } from "react-router-dom"
 import Home from "./components/home"
-import Navbar from "./components/navbar";
 import Signin from './components/Signin';
 import Signup from './components/Signup';
 import SingleBlog from './components/singleBlog';
@@ -11,7 +10,6 @@ import Nav from './components/Nav';
 function App() {
   return (
     <>
-      {/* <Navbar /> */}
       <Nav />
       <Routes>
         <Route path="/" exact element={<Home />} />

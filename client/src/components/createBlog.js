@@ -13,7 +13,15 @@ import {
   MenuItem,
   Button,
 } from "@mui/material";
-
+const options = [
+  "Technical",
+  "Environmental",
+  "Music",
+  "History",
+  "Cooking",
+  "Tourism",
+  "Health",
+];
 export default () => {
 
   const dispatch = useDispatch();
@@ -97,14 +105,16 @@ export default () => {
           }}
           onChange={handleChange}
         >
-          <MenuItem value="technical">Technical</MenuItem>
+          {options.map((option)=>{return <MenuItem key={option} value={option.toLowerCase()}>{option}</MenuItem>})}
+          {/* <MenuItem value="technical">Technical</MenuItem>
           <MenuItem value="cooking">Cooking</MenuItem>
           <MenuItem value="history">History </MenuItem>
           <MenuItem value="music">Music</MenuItem>
-          <MenuItem value="other">Music</MenuItem>
+          <MenuItem value="other">Music</MenuItem> */}
         </TextField>
         <TextField
           placeholder="enter title of your blog"
+          label="title"
           fullWidth
           sx={{
             mt: "3%",

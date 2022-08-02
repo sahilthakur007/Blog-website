@@ -63,7 +63,7 @@ const SlideShow = () => {
             >
               <p style={{ marginLeft: "1vw" }}>
                 <b style={{ fontSize: "25px" }}>{slideImage.caption}</b>{" "}
-                <u style={{ color: "white" }}  onClick={() => {
+                <u style={{ color: "white",cursor:"pointer" }}  onClick={() => {
                 navigate(`/singleblog/${slideImage.id}`);
               }}> click here</u>
               </p>
