@@ -29,7 +29,6 @@ export default () => {
   const { blogs } = useSelector((state) => state.blogsReducer.blogs);
   const { id } = useParams();
   const singleBlog = blogs?.find((blog) => blog._id == id)
-  console.log(id)
   const [image, setimage] = useState("");
   let initialState;
   if (id) {
@@ -59,18 +58,15 @@ export default () => {
     setimage(URL.createObjectURL(img))
   };
   const handleChange = (e) => {
-    console.log(e.target.value);
     setblogdetails({ ...blogdetails, [e.target.name]: e.target.value });
   }
   const handleClick = (e) => {
     // const newblog = { ...blogdetails, image };
     dispatch(sendBlog(blogdetails, navigate));
-    console.log(blogdetails)
   }
   const handleupdate = (e) => {
    
     dispatch(updateBlog(blogdetails,id,navigate));
-    // console.log(newblog)
   }
   return (
     <Box
@@ -106,11 +102,6 @@ export default () => {
           onChange={handleChange}
         >
           {options.map((option)=>{return <MenuItem key={option} value={option.toLowerCase()}>{option}</MenuItem>})}
-          {/* <MenuItem value="technical">Technical</MenuItem>
-          <MenuItem value="cooking">Cooking</MenuItem>
-          <MenuItem value="history">History </MenuItem>
-          <MenuItem value="music">Music</MenuItem>
-          <MenuItem value="other">Music</MenuItem> */}
         </TextField>
         <TextField
           placeholder="enter title of your blog"

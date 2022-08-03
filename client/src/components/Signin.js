@@ -1,7 +1,7 @@
-import { Box, Button, Card, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import { ThemeProvider } from "@mui/material";
 import { customTheme } from "../Theme";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { signInUser } from "../Redux/actions/authAction";
 import { useDispatch } from "react-redux";
@@ -16,7 +16,6 @@ const Signin = () => {
     }
   const formSubmitHandler = (e) => {
          dispatch(signInUser(userinfo,navigate))
-        // console.log(userinfo)
     }
   return (
     <Box pt="100px" sx={{ display: "flex", justifyContent: "center",mt:"10vh" }}>
@@ -33,7 +32,7 @@ const Signin = () => {
           size="small"
           value={userinfo.email}
           onChange={userInputHandler}
-          sx={{ m: "8px", width: "90%" }}
+          sx={{ m: "8px", width: "90%",backgroundColor:"white" }}
         />
         <TextField
           required
@@ -44,7 +43,7 @@ const Signin = () => {
           size="small"
           value={userinfo.password}
           onChange={(e)=>userInputHandler(e)}
-          sx={{ m: "8px", width: "90%" }}
+          sx={{ m: "8px", width: "90%",backgroundColor:"white"}}
         />
 
         <ThemeProvider theme={customTheme}>
@@ -57,7 +56,7 @@ const Signin = () => {
             Sign in
           </Button>
         </ThemeProvider>
-        <label style={{ color: "grey" }}>New user?</label>
+        <label>New user?</label>
         <Button variant="contained" color="secondary"sx={{ mt: "2px",mb:"1vh"}} onClick={()=>{navigate("/signup")}}>
         Create Account
           </Button>

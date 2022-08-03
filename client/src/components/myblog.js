@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import BlogCard from "./BlogCard";
 let mybloglist = [];

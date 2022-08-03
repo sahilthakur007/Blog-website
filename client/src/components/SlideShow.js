@@ -1,29 +1,8 @@
 import { Slide } from "react-slideshow-image";
-import { Button, Tooltip, Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
-const slideImages = [
-  {
-    id: 1,
-    url: "https://images.unsplash.com/photo-1509721434272-b79147e0e708?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
-    caption: "Slide 1",
-  },
-  {
-    id: 2,
-    url: "https://images.unsplash.com/photo-1506710507565-203b9f24669b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1536&q=80",
-    caption: "Slide 2",
-  },
-  {
-    id: 3,
-    url: "https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
-    caption: "Slide 3",
-  },
-  {
-    id: 4,
-    url: "https://images.unsplash.com/photo-1444525873963-75d329ef9e1b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
-    caption: "Slide 4",
-  },
-];
 const properties = {
   duration: 5000,
   autoplay: true,
@@ -34,14 +13,18 @@ const properties = {
 };
 
 const SlideShow = () => {
+  const { blogs } = useSelector((state) => state.blogsReducer.blogs);
+  const [trendingBlogs,setTrendingBlogs]=useState(blogs.slice(0).sort((a, b) => b.Likes.length - a.Likes.length).slice(0,5))
+  useEffect(()=>{
+    setTrendingBlogs(blogs.slice(0).sort((a, b) => b.Likes.length - a.Likes.length).slice(0,5))
+  },[blogs])
   const navigate = useNavigate();
-
   return (
     <div style={{ marginTop: "2vh" }}>
       <Slide {...properties}>
-        {slideImages.map((slideImage) => (
+        {trendingBlogs.map((blog) => (
           <div
-            key={slideImage.id}
+            key={blog._id}
             style={{
               height: "35vw",
               width: "100%",
@@ -52,7 +35,7 @@ const SlideShow = () => {
           >
             <div
               style={{
-                backgroundImage: `url(${slideImage.url})`,
+                backgroundImage: `url(${blog.image})`,
                 height: "35vw",
                 width: "80vw",
                 backgroundSize: "80vw 35vw",
@@ -62,9 +45,9 @@ const SlideShow = () => {
              
             >
               <p style={{ marginLeft: "1vw" }}>
-                <b style={{ fontSize: "25px" }}>{slideImage.caption}</b>{" "}
+                <b style={{ fontSize: "25px",color:"white" }}>{blog.title}</b>{" "}
                 <u style={{ color: "white",cursor:"pointer" }}  onClick={() => {
-                navigate(`/singleblog/${slideImage.id}`);
+                navigate(`/singleblog/${blog._id}`);
               }}> click here</u>
               </p>
             </div>

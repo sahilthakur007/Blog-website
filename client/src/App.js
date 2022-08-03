@@ -7,6 +7,7 @@ import SingleBlog from './components/singleBlog';
 import CreateBlog from './components/createBlog';
 import MyBlog from "./components/myblog"
 import Nav from './components/Nav';
+import Profile from './components/Profile';
 function App() {
   return (
     <>
@@ -19,6 +20,7 @@ function App() {
         <Route path="/createBlog" element={<CreateBlog />} />
         <Route path="/createBlog/:id" element={<CreateBlog />} />
         <Route path="/myblog" element={<MyBlog />} />
+        <Route path="/profile" element={<Profile/>}/>
       </Routes>
     </>
   );
