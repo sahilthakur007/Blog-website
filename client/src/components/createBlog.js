@@ -27,9 +27,11 @@ export default () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { blogs } = useSelector((state) => state.blogsReducer.blogs);
+  const { userInfo } = useSelector((state) => state.authReducer
+  )
   const { id } = useParams();
   const singleBlog = blogs?.find((blog) => blog._id == id)
-  console.log(id)
+  console.log(userInfo)
   const [image, setimage] = useState("");
   let initialState;
   if (id) {

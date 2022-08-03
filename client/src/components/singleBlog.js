@@ -30,7 +30,7 @@ export default () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
-  
+
 
     const getBlogs = async () => {
       dispatch(storeallblogs());
@@ -43,7 +43,7 @@ export default () => {
   // if(blogs)
   console.log(blogs)
   const singleBlog = blogs?.find((blog) => blog._id == id)
-  
+
   console.log(singleBlog)
   const [showComments, setShowCommnets] = useState(false);
   const { userInfo } = useSelector((state) => state.authReducer);
@@ -65,13 +65,12 @@ export default () => {
     setcomment({ ...Fcomment, [e.target.name]: e.target.value })
   }
   const submitComment = () => {
-  
-    if (userInfo)
-    {
+
+    if (userInfo) {
       const newComment = { ...Fcomment, commentUserName }
 
       dispatch(sendComment(newComment, id))
-     }
+    }
   }
   const handleDelete = () => {
     console.log("clicked")
@@ -84,26 +83,26 @@ export default () => {
     let userid;
     if (userInfo)
       userid = userInfo.user._id;
-    
+
     if (singleBlog) {
       const present = singleBlog.Likes.find((like) => like.likedUser == userid);
 
       if (present) setliked(true)
-   }
- 
+    }
+
   }, [])
 
   if (!singleBlog) {
     return (<>Loading</>)
   }
   const likeHandler = () => {
-    
+
     const present = singleBlog.Likes.find((like) => like.likedUser == userInfo.user._id);
-  
+
 
     // if (!present) {
-      dispatch(addLike(id));
-      setliked(true);
+    dispatch(addLike(id));
+    setliked(true);
     // };
 
     // setliked((prev) => !prev);
@@ -135,7 +134,7 @@ export default () => {
                 textAlign: "right",
               }}
             >
-              {dateFormat(singleBlog.createdAt,"mmmm dS, yyyy")}
+              {dateFormat(singleBlog.createdAt, "mmmm dS, yyyy")}
             </Typography>
 
             <img src={singleBlog.image} className="blogImage" />
@@ -261,7 +260,7 @@ export default () => {
                   <Button onClick={submitComment} variant="contained" color="error" sx={{
                     textTransform: "capitalize",
                     mt: "2%",
-                    backgroundImage: "linear-gradient(to left, red, #ff9100)" 
+                    backgroundImage: "linear-gradient(to left, red, #ff9100)"
 
                   }} >Post</Button>
                 </Box>
