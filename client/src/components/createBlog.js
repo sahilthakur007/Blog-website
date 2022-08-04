@@ -141,7 +141,7 @@ export default () => {
           onChange={handleChange}
           name="content"
           value = {blogdetails.content}
-          style={{ resize: "none", fontSize: "24px", width:"99%",height:"50vh"}}
+          style={{ resize: "none", fontSize: "24px", width:"99%",height:"50vh",textTransform:"none"}}
         ></textarea>
         {
           !id ? (<Button

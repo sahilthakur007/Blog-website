@@ -96,18 +96,16 @@ const Signup = () => {
         <ThemeProvider theme={customTheme}>
           <Button
             variant="contained"
-            color="myColor"
+            color="btn"
             onClick={formSubmitHandler}
             sx={{
               width: "20vh",
               mt: "15px",
               mb: "40px",
-              backgroundImage: "linear-gradient(to left, red, #ff9100)",
             }}
           >
             Sign up
           </Button>
-        </ThemeProvider>
         <label>Account already exists?</label>
         <Button
           color="secondary"
@@ -119,6 +117,7 @@ const Signup = () => {
         >
           Sign in
         </Button>
+        </ThemeProvider>
       </Box>
     </Box>
   );

@@ -36,7 +36,6 @@ export default () => {
   }, []);
   const { blogs } = useSelector((state) => state.blogsReducer.blogs);
   const { id } = useParams();
-  console.log(id)
   // if(blogs)
   const singleBlog = blogs?.find((blog) => blog._id == id)
   const [showComments, setShowCommnets] = useState(false);
