@@ -1,7 +1,7 @@
 const Blogs = require("../model/blog")
 exports.storeBlog = async (req, res) => {
 
-    const { topic, title, image, content } = req.body
+    const { topic, title, image, content, author } = req.body
     if (!topic || !title || !image || !content) {
         return res.status(400).json({
             message: "missing some value"
@@ -10,7 +10,7 @@ exports.storeBlog = async (req, res) => {
     }
     try {
         const blog = await Blogs.create({
-            topic, title, image, content, userId: req.user._id
+            topic, title, image, content, userId: req.user._id, author
         })
         if (!blog) {
             return res.status(500).json({
@@ -138,10 +138,10 @@ exports.addLike = async (req, res) => {
                 message: "blog not found"
             })
         }
-        console.log(blog.Likes)
-        console.log(req.user._id);
-        const present =blog.Likes.filter((like) => like.likedUser == req.user._id)
-        console.log(present)
+        // console.log(blog.Likes)
+        // console.log(req.user._id);
+        const present = await Blogs.find({ Likes: { $elemMatch: { likedUser: req.user._id }}})
+        console.log(present.length)
         
         // if (present) {
         //     const newlikes = blog.Likes.filter((like) => likedUser != req.user._id);
@@ -149,10 +149,10 @@ exports.addLike = async (req, res) => {
 
         // }
         // else {
-            const addlikedUser = {
-                likedUser: req.user._id
-            }
-            blog.Likes.push(addlikedUser)
+            // const addlikedUser = {
+            //     likedUser: req.user._id
+            // }
+            // blog.Likes.push(addlikedUser)
         // }
 
         blog.save();

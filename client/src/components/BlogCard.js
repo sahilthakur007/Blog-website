@@ -2,7 +2,6 @@ import {
   Card,
   Typography,
   CardContent,
-  CardActions,
   Button,
   Badge,
 } from "@mui/material";
@@ -56,14 +55,6 @@ const BlogCard = ({ blog }) => {
               <p style={{ color: "grey", margin: "0px" }}>Date: {dateFormat(blog.createdAt,"mmmm dS, yyyy")}</p>
               <p>{blog.content}</p>
             </CardContent>
-            {/* <CardActions className="blogcard-cardactions">
-              <Button
-                variant="outlined"
-                onClick={() => navigate(`/singleblog/${blog._id}`)}
-              >
-                Read full blog
-              </Button>
-            </CardActions> */}
           </Card>
         </Badge>
       </Box>

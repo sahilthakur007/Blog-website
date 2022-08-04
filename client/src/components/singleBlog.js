@@ -19,7 +19,6 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import CommentIcon from "@mui/icons-material/Comment";
 import dateFormat from "dateformat";
@@ -30,8 +29,6 @@ export default () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
-
-
     const getBlogs = async () => {
       dispatch(storeallblogs());
     };
@@ -41,18 +38,13 @@ export default () => {
   const { id } = useParams();
   console.log(id)
   // if(blogs)
-  console.log(blogs)
   const singleBlog = blogs?.find((blog) => blog._id == id)
-
-  console.log(singleBlog)
   const [showComments, setShowCommnets] = useState(false);
   const { userInfo } = useSelector((state) => state.authReducer);
-  // console.log(userInfo.user);
 
   let commentUserName;
   if (userInfo)
     commentUserName = userInfo.user.name;
-  console.log(commentUserName);
   const [Fcomment, setcomment] = useState({
     comment: "",
   });
@@ -73,7 +65,6 @@ export default () => {
     }
   }
   const handleDelete = () => {
-    console.log("clicked")
     dispatch(deleteBlog(id, navigate))
   }
   const handleEdit = () => {

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux"
 import FileBase from "react-file-base64"
 import { sendBlog ,updateBlog} from "../Redux/actions/blogsactoion"
 import { useNavigate, useParams } from "react-router-dom"
 import { useSelector } from "react-redux";
+
 
 import {
   TextField,
@@ -12,7 +13,9 @@ import {
   Paper,
   MenuItem,
   Button,
+  CircularProgress
 } from "@mui/material";
+
 const options = [
   "Technical",
   "Environmental",
@@ -29,11 +32,15 @@ export default () => {
   const { blogs } = useSelector((state) => state.blogsReducer.blogs);
   const { userInfo } = useSelector((state) => state.authReducer
   )
+  useEffect(() => {
+    if (!userInfo) return (navigate("/signup"))
+  }, [userInfo])
+  console.log(userInfo);
   const { id } = useParams();
   const singleBlog = blogs?.find((blog) => blog._id == id)
-  console.log(userInfo)
   const [image, setimage] = useState("");
   let initialState;
+
   if (id) {
     console.log(singleBlog)
     const { title, topic, content } = singleBlog;
@@ -41,6 +48,7 @@ export default () => {
       title: title,
       topic: topic,
       content: content,
+      author: userInfo.user.name
      
     }
   }
@@ -61,18 +69,15 @@ export default () => {
     setimage(URL.createObjectURL(img))
   };
   const handleChange = (e) => {
-    console.log(e.target.value);
     setblogdetails({ ...blogdetails, [e.target.name]: e.target.value });
   }
   const handleClick = (e) => {
     // const newblog = { ...blogdetails, image };
     dispatch(sendBlog(blogdetails, navigate));
-    console.log(blogdetails)
   }
   const handleupdate = (e) => {
    
     dispatch(updateBlog(blogdetails,id,navigate));
-    // console.log(newblog)
   }
   return (
     <Box
@@ -108,11 +113,6 @@ export default () => {
           onChange={handleChange}
         >
           {options.map((option)=>{return <MenuItem key={option} value={option.toLowerCase()}>{option}</MenuItem>})}
-          {/* <MenuItem value="technical">Technical</MenuItem>
-          <MenuItem value="cooking">Cooking</MenuItem>
-          <MenuItem value="history">History </MenuItem>
-          <MenuItem value="music">Music</MenuItem>
-          <MenuItem value="other">Music</MenuItem> */}
         </TextField>
         <TextField
           placeholder="enter title of your blog"

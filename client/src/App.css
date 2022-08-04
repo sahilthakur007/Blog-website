@@ -160,6 +160,41 @@ input[type=file]::file-selector-button {
   border-radius: 15px;
   align-items: center;
   box-shadow: 2px 2px 6px grey;
+  background-image: url("./Images/5532862.jpg");
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+.profile-box{
+  width: 50vw;
+  background-color:white;
+  padding: 5% 2%;
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+  border-radius: 15px;
+  align-items: center;
+  box-shadow: 2px 2px 6px grey;
+  border:8px solid #ff9100;
+}
+.profile-image{
+  width:15vw;
+  height:15vw;
+  border-radius: 50%;
+  border:12px solid #efefef;
+  background-size: 15vw 15vw;
+  background-repeat: no-repeat;
+}
+.profile-mail-div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color:rgb(208, 227, 227);
+  padding: 10px 14px;
+  border-radius: 10px;
+}
+.profile-mail-div>h4{
+  margin: 0px;
+  padding: 0px;
 }
 @media screen and (max-width: 1020px) {
   .nav-menu-icon{
@@ -218,6 +253,15 @@ input[type=file]::file-selector-button {
   .nav-buttons{
     display:none;
   }
+  .profile-box{
+    width:70vw;
+  }
+  .profile-image{
+    width: 20vw;
+    height: 20vw;
+    background-size: 20vw 20vw;
+  } 
+
 }
 @media screen and (max-width: 620px) {
   .sidebar{
@@ -261,6 +305,15 @@ input[type=file]::file-selector-button {
     width:40vw;
     margin-left: 54vw;
   }
+  .profile-box{
+    width:70vw;
+  }
+  .profile-image{
+    width: 24vw;
+    height: 24vw;
+    background-size: 24vw 24vw;
+  } 
+
 }
 @media screen and (max-width: 320px) {
   .sidebar{
@@ -274,4 +327,10 @@ input[type=file]::file-selector-button {
   .signup{
     width:75vw;
   }
+ 
+  /* .profile-image{
+    width: ;
+    height: ;
+    background-size: ;
+  } */
 }

@@ -4,8 +4,6 @@ import { useState } from "react";
 import {
   AppBar,
   Toolbar,
-  Stack,
-  Box,
   TextField,
   Typography,
   Button,
@@ -33,13 +31,6 @@ const Nav = () => {
   const [searchValue, setSearchValue] = useState("");
   const [sidebar,setSidebar]=useState(false);
   const searchHandler = (e) => {
-    // if(searchValue !== "")
-    // {
-    //   blogs.filter((blog)=>{
-    //     return blog.title.toLowerCase().includes(searchValue.toLowerCase())
-    //   })
-    // }
-    // console.log(searchValue)
     dispatch(filterBySearch(searchValue));
   };
   const handleLogout = () => {
@@ -137,6 +128,7 @@ const Nav = () => {
                       mr:"1vw",
                   ml:"1vw"
                     }}
+                    onClick={()=>navigate("/profile")}
                   >
                     Profile
                   </Button>
@@ -153,8 +145,9 @@ const Nav = () => {
                     Logout
                   </Button>
                   <Avatar
-                    alt="Profile photo"
-                    src="/static/images/avatar/1.jpg"
+                    alt={userInfo.user.name}
+                    src={userInfo.user.photo}
+                    onClick={()=>{navigate("./profile")}}
                   />
                 </>
               )}

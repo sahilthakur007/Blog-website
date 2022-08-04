@@ -54,6 +54,9 @@ const blogSchema = new mongoose.Schema({
         }
       
     ],
+    author: {
+        type:String
+    },
     createdAt: {
         type: Date,
         default:Date.now()

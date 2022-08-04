@@ -1,5 +1,4 @@
-import { Fab, Stack, Typography, Box, Tooltip } from "@mui/material";
-import { Slide } from "react-slideshow-image";
+import { Fab, Typography, Box, Tooltip, CircularProgress } from "@mui/material";
 import "react-slideshow-image/dist/styles.css";
 import BlogCards from "./BlogCards";
 import EditIcon from "@mui/icons-material/Edit";
@@ -23,15 +22,6 @@ const filters = [
   "health",
 ];
 
-const properties = {
-  duration: 5000,
-  autoplay: true,
-  transitionDuration: 1000,
-  arrows: true,
-  infinite: true,
-  easing: "ease",
-};
-
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -41,37 +31,35 @@ const Home = () => {
     };
     getBlogs();
   }, []);
-  const { userInfo } = useSelector((state) => state.authReducer
-  )
+  const { userInfo } = useSelector((state) => state.authReducer);
   const searchValue = useSelector((state) => state.filterReducer);
-  
+
   const { blogs } = useSelector((state) => state.blogsReducer.blogs);
- 
+
   const [blogList, setBlogList] = useState(blogs);
   useEffect(() => {
     if (searchValue !== "") {
-      console.log(searchValue);
-      setBlogList( blogs.filter((blog) => (
-        blog.title.toLowerCase().includes(searchValue.toLowerCase())
-      )))
-    }
-    else {
+      setBlogList(
+        blogs.filter((blog) =>
+          blog.title.toLowerCase().includes(searchValue.toLowerCase())
+        )
+      );
+    } else {
       setBlogList(blogs);
     }
-  },[searchValue])
-
-
-
-  
-  console.log(blogs);
-console.log(blogList)
+  }, [searchValue]);
   useEffect(() => {
     setBlogList(blogs);
   }, [blogs]);
   const filterHandler = (e) => {
     if (e.target.id === "All") {
       setBlogList(blogs);
-    } else {
+    }
+    else if(e.target.id==="trending"){
+      const trendingblogs=blogs.slice(0).sort((a, b) => b.Likes.length - a.Likes.length);
+      setBlogList(trendingblogs)
+    }
+    else {
       const newBlogList = blogs.filter((blog) => {
         return blog.topic === e.target.id;
       });
@@ -110,9 +98,15 @@ console.log(blogList)
           <em>Visit trending blogs...</em>
         </strong>
       </Typography>
-      <SlideShow />
-      {/* <Stack direction="row" spacing={2} sx={{ m: "20px" }}> */}
-      <div style={{display:"flex",margin:"20px",overflow:"auto",whiteSpace:"nowrap"}}>
+      {blogs ? <SlideShow /> : <div style={{display:"flex",justifyContent:"center",margin:"10px 0px"}}><CircularProgress/></div>}
+      <div
+        style={{
+          display: "flex",
+          margin: "20px",
+          overflow: "auto",
+          whiteSpace: "nowrap",
+        }}
+      >
         {filters.map((filter, index) => (
           <button
             id={filter}
@@ -120,28 +114,32 @@ console.log(blogList)
             style={{
               height: "40px",
               boxShadow: "2px 2px 6px grey",
-              margin:"0px 0.5vw",
-              backgroundColor:"rgba(190, 190, 190,0.6)",
-              color:"black",
-              fontSize:"18px",
-              fontWeight:"bold",
-              borderRadius:"20px",
-              padding:"0px 15px",
-              cursor:"pointer"
+              margin: "0px 0.5vw",
+              backgroundColor: "rgba(190, 190, 190,0.6)",
+              color: "black",
+              fontSize: "18px",
+              fontWeight: "bold",
+              borderRadius: "20px",
+              padding: "0px 15px",
+              cursor: "pointer",
             }}
             onClick={(e) => filterHandler(e)}
           >
             {filter.substring(0, 1).toUpperCase() + filter.substring(1)}
           </button>
         ))}
-        </div>
-      {/* </Stack> */}
+      </div>
       <BlogCards blogs={blogList} />
-      {
-        userInfo && (<ThemeProvider theme={customTheme}>
+      {userInfo && (
+        <ThemeProvider theme={customTheme}>
           <Tooltip
             title="Write blog"
-            sx={{ position: "fixed", bottom: 20, right: 20, backgroundImage: "linear-gradient(to left, red, #ff9100)" }}
+            sx={{
+              position: "fixed",
+              bottom: 20,
+              right: 20,
+              backgroundImage: "linear-gradient(to left, red, #ff9100)",
+            }}
           >
             <Fab
               variant="extended"
@@ -155,8 +153,8 @@ console.log(blogList)
               New Blog
             </Fab>
           </Tooltip>
-        </ThemeProvider>)
-      }
+        </ThemeProvider>
+      )}
     </Box>
   );
 };
