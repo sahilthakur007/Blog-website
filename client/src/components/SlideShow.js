@@ -4,9 +4,9 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 const properties = {
-  duration: 5000,
+  duration: 3000,
   autoplay: true,
-  transitionDuration: 1000,
+  transitionDuration: 900,
   arrows: true,
   infinite: true,
   easing: "ease",

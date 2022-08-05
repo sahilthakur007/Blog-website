@@ -79,6 +79,12 @@ input[type=file]::file-selector-button {
   align-items: flex-end;
   justify-content: end;
 }
+.blogcard-image:hover{
+  /* transform:rotateY(20deg); */
+  /* transform: rotate(1turn); */
+  transform:rotateY(15deg) rotateX(-15deg);
+  transition-duration: 200ms;
+}
 .blogcard-info{
   width: 36vw;
   height: 32vh;
@@ -86,6 +92,9 @@ input[type=file]::file-selector-button {
   margin-left: -11vw;
   box-shadow: 3px 3px 8px grey;
   border: 1px solid grey;
+}
+.blogcard-info:hover{
+  box-shadow: 8px 8px 10px rgb(190, 182, 167);
 }
 .blogcard-cardcontent{
   margin-left: 11vw;
@@ -160,7 +169,7 @@ input[type=file]::file-selector-button {
   border-radius: 15px;
   align-items: center;
   box-shadow: 2px 2px 6px grey;
-  background-image: url("./Images/5532862.jpg");
+  background-image: url("./Images/istockphoto-475706356-170667a.jpg");
   background-repeat: no-repeat;
   background-size:cover;
 }
@@ -195,6 +204,63 @@ input[type=file]::file-selector-button {
 .profile-mail-div>h4{
   margin: 0px;
   padding: 0px;
+}
+.home-image-box{
+  background:url("./Images/blog.jpg");
+  background-repeat: no-repeat;
+  height: 50vh;
+  width: 99vw;
+  background-size:100vw 70vh;
+  margin-top: 70px;
+  /* opacity: 85%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding-top:8vh; */
+}
+.home-title{
+  margin:0px;
+  padding: 0px;
+  margin-top: 42vh;
+  font-style:italic;
+  font-weight:bolder;
+  color:white;
+  animation-name: example;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+}
+@keyframes example {
+  0%   {color: rgb(251, 255, 0);}
+  25% {color:rgb(0, 247, 0);}
+  50% {color: aqua;}
+  75%  {color: rgb(0, 0, 255);}
+  100% {color:rgb(255, 0, 200);}
+}
+.about-page-image{
+  background:url("./Images/about-us-sign-as-crossword-cube-blocks-white-background-3d-rendering_476612-13679.webp");
+  background-repeat: no-repeat;
+  height: 70vh;
+  width: 100vw;
+  background-size:100vw 70vh;
+  margin-top: 70px;
+  opacity: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.about-page-div{
+  width:70vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color:rgb(208, 227, 227);
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-top:30px;
+}
+.about-page-div:hover{
+  box-shadow: 4px 4px 8px rgb(172, 172, 172);
 }
 @media screen and (max-width: 1020px) {
   .nav-menu-icon{

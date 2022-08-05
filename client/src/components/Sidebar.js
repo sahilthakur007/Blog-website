@@ -23,7 +23,7 @@ const Sidebar = (props) => {
       >
         <h3>Home</h3>
       </div>
-      <div className="sidebar-buttons">
+      <div className="sidebar-buttons" onClick={() => {navigate("/about");}}> 
         <h3>About</h3>
       </div>
       {props.userinfo && (

@@ -8,7 +8,6 @@ import {
   Typography,
   Button,
   Avatar,
-  Backdrop,
 } from "@mui/material";
 import { ThemeProvider } from "@mui/material";
 import DehazeIcon from "@mui/icons-material/Dehaze";
@@ -97,6 +96,7 @@ const Nav = () => {
               </Button>
               <Button
                 color="inherit"
+                onClick={() => navigate("/about")}
                 sx={{
                   fontSize: "19px",
                   textTransform: "none",

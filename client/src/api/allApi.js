@@ -17,3 +17,4 @@ export const updateblog = (blog, id) => API.patch(`/blogs/updateblog/${id}`,blog
 export const addlike = (id) => API.patch(`/blogs/addlike/${id}`)
 export const addcomment = (comment, id) => API.post(`/blogs/addcomment/${id}`,comment)
 export const deleteblog = (id) => API.patch(`/blogs/deleteblog/${id}`)
+export const removelike = (id,uid) => API.patch(`/blogs/removelike/${id}/${uid}`)

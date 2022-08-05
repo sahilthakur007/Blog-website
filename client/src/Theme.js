@@ -10,6 +10,9 @@ export const customTheme= createTheme({
         },
         white:{
             main:"#fff"
+        },
+        btn:{
+            main:"green"
         }
     }
 })

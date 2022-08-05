@@ -130,7 +130,7 @@ exports.addLike = async (req, res) => {
         })
     }
 
-    console.log(id);
+  
     try {
         const blog = await Blogs.findById({ _id: id });
         if (!blog) {
@@ -138,22 +138,16 @@ exports.addLike = async (req, res) => {
                 message: "blog not found"
             })
         }
-        // console.log(blog.Likes)
-        // console.log(req.user._id);
-        const present = await Blogs.find({ Likes: { $elemMatch: { likedUser: req.user._id }}})
-        console.log(present.length)
+       
+       
+      
         
-        // if (present) {
-        //     const newlikes = blog.Likes.filter((like) => likedUser != req.user._id);
-        //     // blog.Likes = newlikes;
-
-        // }
-        // else {
-            // const addlikedUser = {
-            //     likedUser: req.user._id
-            // }
-            // blog.Likes.push(addlikedUser)
-        // }
+            
+            const addlikedUser = {
+                likedUser: req.user._id
+            }
+            blog.Likes.push(addlikedUser)
+          
 
         blog.save();
         return res.status(200).json({
@@ -166,4 +160,37 @@ exports.addLike = async (req, res) => {
         })
     }
 
+}
+exports.removeLike = async (req, res) => {
+    const id = req.params.id;
+    const uid = req.params.uid;
+    
+    if (!req.user || !id) {
+        return res.status(400).json({
+            message: "Please log In "
+        })
+    }
+
+   
+    try {
+        const blog = await Blogs.findById({ _id: id });
+        if (!blog) {
+            return res.status(400).json({
+                message: "blog not found"
+            })
+        }
+        const present =blog.Likes.filter((like) =>like.likedUser!=uid)
+
+        
+        blog.Likes = present; 
+        blog.save();
+        return res.status(200).json({
+            blog
+        })
+    }
+    catch (error) {
+        return res.status(500).json({
+            message: "some thing is wrong"
+        })
+    }
 }

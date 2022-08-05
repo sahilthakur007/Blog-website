@@ -1,4 +1,4 @@
-import { getalllblogs, storeblog, updateblog, addlike, addcomment, deleteblog } from "../../api/allApi"
+import { getalllblogs, storeblog, updateblog, addlike, addcomment, deleteblog, removelike } from "../../api/allApi"
 
 export const storeallblogs = () => async(dispatch) => {
     
@@ -90,6 +90,7 @@ export const addLike = (id) => async (dispatch) => {
     try {
         const res = await addlike(id);
         const { data } = await getalllblogs();
+        console.log(res); 
         dispatch({
             type: "ADDLIKE",
             payload: data
@@ -99,3 +100,19 @@ export const addLike = (id) => async (dispatch) => {
         console.log(error);
     }
 } 
+
+export const removeLike = (id,uid) => async (dispatch) => {
+    try {
+        const res = await removelike(id,uid);
+        const { data } = await getalllblogs();
+        console.log(res); 
+        dispatch({
+            type: "ADDLIKE",
+            payload: data
+        })
+    }
+    catch (error) {
+        console.log(error);
+    }
+} 
+

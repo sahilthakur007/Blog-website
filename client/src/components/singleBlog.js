@@ -24,7 +24,7 @@ import CommentIcon from "@mui/icons-material/Comment";
 import dateFormat from "dateformat";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { sendComment, deleteBlog, addLike, storeallblogs } from "../Redux/actions/blogsactoion"
+import { sendComment, deleteBlog, addLike, storeallblogs, removeLike } from "../Redux/actions/blogsactoion"
 export default () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -36,7 +36,6 @@ export default () => {
   }, []);
   const { blogs } = useSelector((state) => state.blogsReducer.blogs);
   const { id } = useParams();
-  console.log(id)
   // if(blogs)
   const singleBlog = blogs?.find((blog) => blog._id == id)
   const [showComments, setShowCommnets] = useState(false);
@@ -79,6 +78,7 @@ export default () => {
       const present = singleBlog.Likes.find((like) => like.likedUser == userid);
 
       if (present) setliked(true)
+      else setliked(false); 
     }
 
   }, [])
@@ -91,12 +91,17 @@ export default () => {
     const present = singleBlog.Likes.find((like) => like.likedUser == userInfo.user._id);
 
 
-    // if (!present) {
+    if (!present) {
     dispatch(addLike(id));
-    setliked(true);
-    // };
+      setliked(true);
+       
+    }
+    else {
+      dispatch(removeLike(id,userInfo.user._id)); 
+      setliked(false); 
+    }
 
-    // setliked((prev) => !prev);
+    
   }
   return (
     <>

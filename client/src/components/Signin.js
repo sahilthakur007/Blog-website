@@ -49,17 +49,17 @@ const Signin = () => {
         <ThemeProvider theme={customTheme}>
           <Button
             variant="contained"
-            color="error"
+            color="btn"
             onClick={formSubmitHandler}
-            sx={{ width: "20vh", mt: "15px", mb: "40px", backgroundImage: "linear-gradient(to left, red, #ff9100)" }}
+            sx={{ width: "20vh", mt: "15px", mb: "40px" }}
           >
             Sign in
           </Button>
-        </ThemeProvider>
         <label>New user?</label>
-        <Button variant="contained" color="secondary"sx={{ mt: "2px",mb:"1vh"}} onClick={()=>{navigate("/signup")}}>
+        <Button variant="contained" color="secondary" sx={{ mt: "2px",mb:"1vh"}} onClick={()=>{navigate("/signup")}}>
         Create Account
           </Button>
+          </ThemeProvider>
       </Box>
     </Box>
   );

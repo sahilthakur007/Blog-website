@@ -37,6 +37,7 @@ const Home = () => {
   const { blogs } = useSelector((state) => state.blogsReducer.blogs);
 
   const [blogList, setBlogList] = useState(blogs);
+  const [filterbtn, setFilterbtn] = useState("All");
   useEffect(() => {
     if (searchValue !== "") {
       setBlogList(
@@ -52,14 +53,15 @@ const Home = () => {
     setBlogList(blogs);
   }, [blogs]);
   const filterHandler = (e) => {
+    setFilterbtn(e.target.id);
     if (e.target.id === "All") {
       setBlogList(blogs);
-    }
-    else if(e.target.id==="trending"){
-      const trendingblogs=blogs.slice(0).sort((a, b) => b.Likes.length - a.Likes.length);
-      setBlogList(trendingblogs)
-    }
-    else {
+    } else if (e.target.id === "trending") {
+      const trendingblogs = blogs
+        .slice(0)
+        .sort((a, b) => b.Likes.length - a.Likes.length);
+      setBlogList(trendingblogs);
+    } else {
       const newBlogList = blogs.filter((blog) => {
         return blog.topic === e.target.id;
       });
@@ -69,24 +71,11 @@ const Home = () => {
 
   return (
     <Box>
-      <div
-        style={{
-          background:
-            "url(https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80)",
-          backgroundRepeat: "no-repeat",
-          height: "50vh",
-          width: "100vw",
-          backgroundSize: "100vw 70vh",
-          marginTop: "70px",
-          // opacity: "70%",
-          display: "flex",
-          justifyContent: "center",
-          paddingTop: "8vh",
-        }}
-      >
-        <h1 style={{ fontStyle: "italic", fontWeight: "bolder" }}>
-          Welcome to Easy Blog!
-        </h1>
+      <div className="home-image-box">
+        <h1 className="home-title">Welcome to Easy Blog!</h1>
+        {/* <h3 style={{ color: "orange", margin: "0px", padding: "0px" }}>
+          Create & share the knowledge
+        </h3> */}
       </div>
       <Typography
         variant="h5"
@@ -94,11 +83,26 @@ const Home = () => {
         fontWeight={500}
         sx={{ mt: "4vh", ml: "5vw" }}
       >
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <hr style={{ width: "95%", marginLeft: "0px" }} />
+        </div>
         <strong>
-          <em>Visit trending blogs...</em>
+          <marquee><em style={{color:"red"}}>Visit trending blogs...</em></marquee>
         </strong>
       </Typography>
-      {blogs ? <SlideShow /> : <div style={{display:"flex",justifyContent:"center",margin:"10px 0px"}}><CircularProgress/></div>}
+      {blogs ? (
+        <SlideShow />
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            margin: "10px 0px",
+          }}
+        >
+          <CircularProgress />
+        </div>
+      )}
       <div
         style={{
           display: "flex",
@@ -111,12 +115,14 @@ const Home = () => {
           <button
             id={filter}
             key={index}
+            className="filter-button"
             style={{
-              height: "40px",
+              height: filter === filterbtn ? "38px" : "35px",
               boxShadow: "2px 2px 6px grey",
               margin: "0px 0.5vw",
-              backgroundColor: "rgba(190, 190, 190,0.6)",
-              color: "black",
+              backgroundColor:
+                filter === filterbtn ? "black" : "rgba(190, 190, 190,0.6)",
+              color: filter === filterbtn ? "rgba(190, 190, 190,0.8)" : "black",
               fontSize: "18px",
               fontWeight: "bold",
               borderRadius: "20px",
