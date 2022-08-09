@@ -2,7 +2,7 @@ const Blogs = require("../model/blog")
 exports.storeBlog = async (req, res) => {
 
     const { topic, title, image, content, author } = req.body
-    if (!topic || !title || !image || !content) {
+    if (!topic || !title || !image || !content||!author) {
         return res.status(400).json({
             message: "missing some value"
         })

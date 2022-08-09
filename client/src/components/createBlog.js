@@ -57,7 +57,9 @@ export default () => {
       title: "",
       topic: "",
       content: "",
-      image:""
+      image: "",
+      author: userInfo.user.name
+
 
     }
   }

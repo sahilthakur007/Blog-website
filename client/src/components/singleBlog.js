@@ -161,7 +161,7 @@ export default () => {
                 textAlign: "right",
               }}
             >
-              Author: Sahil Thakur
+              Author: {singleBlog.author}
             </Typography>
             {
               userInfo && userInfo.user._id == singleBlog.userId && (
