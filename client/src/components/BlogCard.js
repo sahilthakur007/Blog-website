@@ -52,8 +52,8 @@ const BlogCard = ({ blog }) => {
               <p style={{ color: "grey", margin: "0px" }}>
                 Author: Divya Kekade
               </p>
-              <p style={{ color: "grey", margin: "0px" }}>Date: {dateFormat(blog.createdAt,"mmmm dS, yyyy")}</p>
-              <p>{blog.content}</p>
+              <p style={{ color: "grey", margin: "0px"}}>Date: {dateFormat(blog.createdAt,"mmmm dS, yyyy")}</p>
+              <p style={{textTransform:"none" }}>{blog.content}</p>
             </CardContent>
           </Card>
         </Badge>

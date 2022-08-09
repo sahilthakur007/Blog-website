@@ -12,7 +12,11 @@ export const customTheme= createTheme({
             main:"#fff"
         },
         btn:{
-            main:"green"
+            main:"rgb(41, 41, 41)",
+            contrastText: "#fff"
+        },
+        black:{
+            main:"#000"
         }
     }
 })

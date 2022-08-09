@@ -1,13 +1,10 @@
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
 const About = () => {
   return (
     <>
       <div className="about-page-image">
-        <marquee>
           <h1>
             <i>We are here to share the blogs & explore the life!</i>
           </h1>
-        </marquee>
       </div>
       <div
         style={{
@@ -19,7 +16,7 @@ const About = () => {
       >
         <div className="about-page-div">
           <h2 style={{ color: "orange" }}>
-            Read The Blogs, Gain The Knowledge!
+            Read The Blogs, Gain The Knowledge.
           </h2>
           <p>
             Read the blogs thorougly and get the knowledge of diferent domains.
@@ -28,7 +25,7 @@ const About = () => {
         </div>
         <div className="about-page-div">
           <h2 style={{ color: "red" }}>
-            Explore The Blogs, Know The Different Aspects Of Life!
+            Explore The Blogs, Know The Different Aspects Of Life.
           </h2>
           <p>
             Visit the different blogs based on different filtered topics and get
@@ -37,7 +34,7 @@ const About = () => {
         </div>
         <div className="about-page-div">
           <h2 style={{ color: "orange" }}>
-            Write The Blogs, Share The Knowledge!
+            Write The Blogs, Share The Knowledge.
           </h2>
           <p>
             Write the blogs in your own words, share the knowledge with others
@@ -46,7 +43,7 @@ const About = () => {
         </div>
         <div className="about-page-div">
           <h2 style={{ color: "red" }}>
-            Develope Your Creativity, Enjoy Your Freedom!
+            Develope Your Creativity, Enjoy Your Freedom.
           </h2>
           <p>
             Build your blogs with your own creative title, words and images.

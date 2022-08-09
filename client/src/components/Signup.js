@@ -108,9 +108,9 @@ const Signup = () => {
           </Button>
         <label>Account already exists?</label>
         <Button
-          color="secondary"
-          variant="contained"
-          sx={{ mt: "2px", mb: "1vh" }}
+          color="black"
+          variant="outlined"
+          sx={{ mt: "2px", mb: "1vh",border:"1px solid black" }}
           onClick={() => {
             navigate("/signin");
           }}
