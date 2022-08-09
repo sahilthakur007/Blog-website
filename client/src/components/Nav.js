@@ -25,7 +25,7 @@ const Nav = () => {
   const { userInfo } = useSelector((state) => state.authReducer);
   const { blogs } = useSelector((state) => state.blogsReducer.blogs);
   // blog array
-
+  // console.log(blogs)
   // add search filter here
   const [searchValue, setSearchValue] = useState("");
   const [sidebar,setSidebar]=useState(false);
@@ -148,6 +148,7 @@ const Nav = () => {
                     alt={userInfo.user.name}
                     src={userInfo.user.photo}
                     onClick={()=>{navigate("./profile")}}
+                    sx={{cursor:"pointer"}}
                   />
                 </>
               )}

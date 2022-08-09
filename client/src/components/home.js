@@ -72,7 +72,7 @@ const Home = () => {
   return (
     <Box>
       <div className="home-image-box">
-        <h1 className="home-title">Welcome to Easy Blog!</h1>
+       <h1 className="home-title">Welcome to Easy Blog!</h1>
         {/* <h3 style={{ color: "orange", margin: "0px", padding: "0px" }}>
           Create & share the knowledge
         </h3> */}
@@ -87,7 +87,7 @@ const Home = () => {
           <hr style={{ width: "95%", marginLeft: "0px" }} />
         </div>
         <strong>
-          <marquee><em style={{color:"red"}}>Visit trending blogs...</em></marquee>
+          <em style={{color:"red"}}>Visit trending blogs...</em>
         </strong>
       </Typography>
       {blogs ? (

@@ -11,7 +11,7 @@ const Sidebar = (props) => {
           alt="Profile photo"
           src={props.userinfo.user.photo}
           onClick={()=>{navigate("./profile")}}
-          sx={{ mt: "10px", mb: "35px", height: "56px", width: "56px" }}
+          sx={{ mt: "10px", mb: "35px", height: "56px", width: "56px",cursor:"pointer" }}
         />
       )}
       <div
