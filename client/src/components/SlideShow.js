@@ -20,36 +20,47 @@ const SlideShow = () => {
   },[blogs])
   const navigate = useNavigate();
   return (
-    <div style={{ marginTop: "2vh" }}>
+    <div style={{ marginTop: "4vh",marginBottom:"4vh"}}>
       <Slide {...properties}>
         {trendingBlogs.map((blog) => (
           <div
             key={blog._id}
             style={{
-              height: "35vw",
-              width: "100%",
+              // height: "35vw",
+              width: "100vw",
               display: "flex",
-              justifyContent: "center",
+              flexDirection:"column",
+              // justifyContent: "center",
               alignItems: "center",
+              backgroundColor:"#efefef"
             }}
           >
+            <p style={{ marginLeft: "1vw" }}>
+                <b style={{ fontSize: "25px" }}>{blog.title}</b>{" "}
+                <u style={{ cursor:"pointer" }}  onClick={() => {
+                navigate(`/singleblog/${blog._id}`);
+              }}> click here</u>
+              </p>
             <div
               style={{
                 backgroundImage: `url(${blog.image})`,
-                height: "35vw",
-                width: "80vw",
-                backgroundSize: "80vw 35vw",
+                height: "30vw",
+                width: "70vw",
+                backgroundSize: "70vw 30vw",
                 backgroundRepeat: "no-repeat",
                 display: "flex",
+                boxShadow:"0px 0px 15px grey",
+                borderRadius:"8px",
+                marginBottom:"4vh"
               }}
              
             >
-              <p style={{ marginLeft: "1vw" }}>
+              {/* <p style={{ marginLeft: "1vw" }}>
                 <b style={{ fontSize: "25px",color:"white" }}>{blog.title}</b>{" "}
                 <u style={{ color: "white",cursor:"pointer" }}  onClick={() => {
                 navigate(`/singleblog/${blog._id}`);
               }}> click here</u>
-              </p>
+              </p> */}
             </div>
           </div>
         ))}

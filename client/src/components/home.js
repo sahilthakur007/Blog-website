@@ -2,6 +2,7 @@ import { Fab, Typography, Box, Tooltip, CircularProgress } from "@mui/material";
 import "react-slideshow-image/dist/styles.css";
 import BlogCards from "./BlogCards";
 import EditIcon from "@mui/icons-material/Edit";
+import Divider from '@mui/material/Divider';
 import { ThemeProvider } from "@mui/material";
 import { customTheme } from "../Theme";
 import { useNavigate } from "react-router-dom";
@@ -83,12 +84,15 @@ const Home = () => {
         fontWeight={500}
         sx={{ mt: "4vh", ml: "5vw" }}
       >
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        {/* <div style={{ display: "flex", justifyContent: "center" }}>
           <hr style={{ width: "95%", marginLeft: "0px" }} />
         </div>
         <strong>
-          <em style={{color:"red"}}>Visit trending blogs...</em>
-        </strong>
+          <em style={{color:"red"}}>Visit trending blogs</em>
+        </strong> */}
+        <Divider variant="middle" textAlign="left" sx={{mr:"5vw"}}>
+          <strong className="font-with-grad">Visit trending blogs</strong>  
+        </Divider>
       </Typography>
       {blogs ? (
         <SlideShow />
@@ -118,16 +122,9 @@ const Home = () => {
             className="filter-button"
             style={{
               height: filter === filterbtn ? "38px" : "35px",
-              boxShadow: "2px 2px 6px grey",
-              margin: "0px 0.5vw",
               backgroundColor:
                 filter === filterbtn ? "black" : "rgba(190, 190, 190,0.6)",
               color: filter === filterbtn ? "rgba(190, 190, 190,0.8)" : "black",
-              fontSize: "18px",
-              fontWeight: "bold",
-              borderRadius: "20px",
-              padding: "0px 15px",
-              cursor: "pointer",
             }}
             onClick={(e) => filterHandler(e)}
           >

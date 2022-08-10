@@ -91,6 +91,7 @@ export default () => {
         sx={{
           m: "30px",
           p: "3%",
+          boxShadow:"0px 0px 8px grey"
         }}
       >
         <Typography

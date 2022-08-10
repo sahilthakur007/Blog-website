@@ -44,7 +44,7 @@ const Signup = () => {
           placeholder="Your name"
           size="small"
           onChange={(e) => userInputHandler(e)}
-          sx={{ m: "8px", width: "90%",backgroundColor:"white" }}
+          sx={{ m: "8px", width: "90%" }}
         />
         <TextField
           required
@@ -54,7 +54,7 @@ const Signup = () => {
           placeholder="Your email"
           size="small"
           onChange={(e) => userInputHandler(e)}
-          sx={{ m: "8px", width: "90%",backgroundColor:"white" }}
+          sx={{ m: "8px", width: "90%" }}
         />
         <TextField
           required
@@ -64,7 +64,7 @@ const Signup = () => {
           placeholder="Your password"
           size="small"
           onChange={(e) => userInputHandler(e)}
-          sx={{ m: "8px", width: "90%",backgroundColor:"white" }}
+          sx={{ m: "8px", width: "90%" }}
         />
         <Box
           sx={{
@@ -96,12 +96,12 @@ const Signup = () => {
         <ThemeProvider theme={customTheme}>
           <Button
             variant="contained"
-            color="btn"
             onClick={formSubmitHandler}
             sx={{
               width: "20vh",
               mt: "15px",
               mb: "40px",
+              backgroundImage: "linear-gradient(to left, red, #ff9100)"
             }}
           >
             Sign up

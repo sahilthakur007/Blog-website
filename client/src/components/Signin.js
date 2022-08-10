@@ -32,7 +32,7 @@ const Signin = () => {
           size="small"
           value={userinfo.email}
           onChange={userInputHandler}
-          sx={{ m: "8px", width: "90%", backgroundColor: "white" }}
+          sx={{ m: "8px", width: "90%" }}
         />
         <TextField
           required
@@ -43,15 +43,14 @@ const Signin = () => {
           size="small"
           value={userinfo.password}
           onChange={(e) => userInputHandler(e)}
-          sx={{ m: "8px", width: "90%", backgroundColor: "white" }}
+          sx={{ m: "8px", width: "90%" }}
         />
 
         <ThemeProvider theme={customTheme}>
           <Button
             variant="contained"
-            color="btn"
             onClick={formSubmitHandler}
-            sx={{ width: "20vh", mt: "15px", mb: "40px" }}
+            sx={{ width: "20vh", mt: "15px", mb: "40px",backgroundImage: "linear-gradient(to left, red, #ff9100)" }}
           >
             Sign in
           </Button>

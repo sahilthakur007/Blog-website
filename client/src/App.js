@@ -9,6 +9,7 @@ import MyBlog from "./components/myblog"
 import Nav from './components/Nav';
 import Profile from './components/Profile';
 import About from './components/About';
+import SavedBlogs from './components/SavedBlogs';
 function App() {
   return (
     <>
@@ -23,6 +24,7 @@ function App() {
         <Route path="/myblog" element={<MyBlog />} />
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/about" element={<About/>}/>
+        <Route path="/savedBlogs" element={<SavedBlogs/>}/>
       </Routes>
     </>
   );

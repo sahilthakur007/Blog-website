@@ -110,6 +110,7 @@ export default () => {
           sx={{
             m: "30px",
             mt: "90px",
+            boxShadow:"0px 0px 8px grey"
           }}
         >
           {blogs && (

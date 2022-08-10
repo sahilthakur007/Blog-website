@@ -128,9 +128,9 @@ const Nav = () => {
                       mr:"1vw",
                   ml:"1vw"
                     }}
-                    onClick={()=>navigate("/profile")}
+                    onClick={()=>navigate("/savedBlogs")}
                   >
-                    Profile
+                    Saved Blogs
                   </Button>
                   <Button
                     color="inherit"

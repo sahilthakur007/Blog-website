@@ -10,7 +10,7 @@ const Sidebar = (props) => {
         <Avatar
           alt="Profile photo"
           src={props.userinfo.user.photo}
-          onClick={()=>{navigate("./profile")}}
+          onClick={()=>{navigate("./profile");props.close();}}
           sx={{ mt: "10px", mb: "35px", height: "56px", width: "56px",cursor:"pointer" }}
         />
       )}
@@ -40,11 +40,11 @@ const Sidebar = (props) => {
           <div
             className="sidebar-buttons"
             onClick={() => {
-              navigate("/profile");
+              navigate("/savedBlogs");
               props.close();
             }}
           >
-            <h3>Profile</h3>
+            <h3>Saved Blogs</h3>
           </div>
           <div
             className="sidebar-buttons"

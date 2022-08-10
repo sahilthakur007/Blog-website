@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Button, Divider } from "@mui/material";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { useSelector } from "react-redux";
 import  {useNavigate} from "react-router-dom"
@@ -24,7 +24,7 @@ const Profile = () => {
             <Box className="profile-box">
               <Box
                 className="profile-image"
-                sx={{ backgroundImage: `url(${userInfo.user.photo})` }}
+                sx={{ backgroundImage: `url(${userInfo.user.photo})`,boxShadow:"0px 0px 10px grey" }}
               ></Box>
               <h2 style={{ marginTop: "35px" }}>{userInfo.user.name}</h2>
               <div className="profile-mail-div">
