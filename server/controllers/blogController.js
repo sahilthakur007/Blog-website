@@ -2,7 +2,7 @@ const Blogs = require("../model/blog")
 exports.storeBlog = async (req, res) => {
 
     const { topic, title, image, content, author } = req.body
-    if (!topic || !title || !image || !content||!author) {
+    if (!topic || !title || !image || !content || !author) {
         return res.status(400).json({
             message: "missing some value"
         })
@@ -130,7 +130,7 @@ exports.addLike = async (req, res) => {
         })
     }
 
-  
+
     try {
         const blog = await Blogs.findById({ _id: id });
         if (!blog) {
@@ -138,16 +138,16 @@ exports.addLike = async (req, res) => {
                 message: "blog not found"
             })
         }
-       
-       
-      
-        
-            
-            const addlikedUser = {
-                likedUser: req.user._id
-            }
-            blog.Likes.push(addlikedUser)
-          
+
+
+
+
+
+        const addlikedUser = {
+            likedUser: req.user._id
+        }
+        blog.Likes.push(addlikedUser)
+
 
         blog.save();
         return res.status(200).json({
@@ -164,14 +164,14 @@ exports.addLike = async (req, res) => {
 exports.removeLike = async (req, res) => {
     const id = req.params.id;
     const uid = req.params.uid;
-    
+
     if (!req.user || !id) {
         return res.status(400).json({
             message: "Please log In "
         })
     }
 
-   
+
     try {
         const blog = await Blogs.findById({ _id: id });
         if (!blog) {
@@ -179,10 +179,10 @@ exports.removeLike = async (req, res) => {
                 message: "blog not found"
             })
         }
-        const present =blog.Likes.filter((like) =>like.likedUser!=uid)
+        const present = blog.Likes.filter((like) => like.likedUser != uid)
 
-        
-        blog.Likes = present; 
+
+        blog.Likes = present;
         blog.save();
         return res.status(200).json({
             blog
@@ -191,6 +191,32 @@ exports.removeLike = async (req, res) => {
     catch (error) {
         return res.status(500).json({
             message: "some thing is wrong"
+        })
+    }
+}
+exports.sendSingleBlog = async (req, res) => {
+    const blog_id = req.params.id;
+    if (!req.user || !blog_id) {
+        return res.status(400).json({
+            message: "Please log In "
+        })
+    }
+    try {
+        console.log(blog_id)
+        const blog = await Blogs.findById({ _id: blog_id });
+        if (!blog) {
+            return res.status(400).json({
+                message: "Something is wrong"
+            })
+        }
+        res.status(200).json({
+            message: "Success",
+            blog
+        })
+    }
+    catch (error) {
+        return res.status(500).json({
+            message: "Server side error"
         })
     }
 }

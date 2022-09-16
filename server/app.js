@@ -12,6 +12,9 @@ app.use(bodyParser.json({ limit: "25mb", extended: true }));
 app.use(cors());
 dotenv.config({ path: "./config/config.env" });
 connectDatabase();
+app.get("/", (req, res) => {
+    res.send("Hello")
+})
 app.use("/auth", AuthRouter);
 app.use("/blogs", BlogRouter);
 const port = process.env.PORT || 5000;

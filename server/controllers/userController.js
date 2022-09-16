@@ -67,3 +67,39 @@ exports.signIn = async (req, res) => {
     }
 
 }
+
+exports.bookmarkBlog = async (req, res) => {
+    const id = req.params.id;
+    console.log(req.user)
+    if (!id || !req.user) {
+        return res.status(400).json({
+            message: "something is wrong"
+        })
+    }
+
+    try {
+        const user = await User.findById({ _id: req.user._id });
+        // console.log(user)
+        if (!user) {
+
+            return res.status(400).json({
+                message: "something is wrong"
+            })
+        }
+        // console.log(req.params.id)
+        const newSavedBlog = {
+            blog: id
+        }
+        user.savedBlog.push(newSavedBlog); 
+         user.save(); 
+        res.status(200).json({
+            message: "Sussesfull",
+            user
+        })
+    }
+    catch (err) {
+        return res.status(500).json({
+            message: "something is wrong"
+        })
+    }
+}
