@@ -32,6 +32,7 @@ import {
   addLike,
   storeallblogs,
   removeLike,
+  bookmarkBlog
 } from "../Redux/actions/blogsactoion";
 export default () => {
   const dispatch = useDispatch();
@@ -103,6 +104,10 @@ export default () => {
       setliked(false);
     }
   };
+  const handleSaveBlog = () => {
+    // console.log("hi")
+    dispatch(bookmarkBlog(id));
+  }
   return (
     <>
       <ThemeProvider theme={customTheme}>
@@ -116,7 +121,7 @@ export default () => {
           {blogs && (
             <>
               <div style={{ display: "flex", justifyContent: "right" }}>
-                <Button
+                <Button onClick = {handleSaveBlog}
                   variant="contained"
                   sx={{
                     m: "1%",

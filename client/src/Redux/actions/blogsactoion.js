@@ -1,4 +1,4 @@
-import { getalllblogs, storeblog, updateblog, addlike, addcomment, deleteblog, removelike } from "../../api/allApi"
+import { getalllblogs, storeblog, updateblog, addlike, addcomment, deleteblog, removelike, bookmark } from "../../api/allApi"
 
 export const storeallblogs = () => async(dispatch) => {
     
@@ -115,4 +115,19 @@ export const removeLike = (id,uid) => async (dispatch) => {
         console.log(error);
     }
 } 
+
+export const bookmarkBlog = (id) => async (dispatch) => {
+    try {
+        const res = await bookmark(id); 
+        console.log(res.data); 
+        dispatch({
+            type: "BOOKMARK",
+            payload:res.data
+        })
+    }
+    catch (error)
+    {
+        console.log(error.message); 
+    }
+}
 

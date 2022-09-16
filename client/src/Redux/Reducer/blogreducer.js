@@ -16,6 +16,8 @@ const blogsReducer = (state = initialState, action) => {
             return { ...state, blogs: action.payload };
         case "COMMENT":
             return { ...state, blogs: action.payload };
+       
+            
         default:
             return state
     }

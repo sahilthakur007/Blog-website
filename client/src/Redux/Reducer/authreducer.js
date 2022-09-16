@@ -14,6 +14,8 @@ const authReducer = ( state = initialSate , action) => {
         case "LOGOUT":
             localStorage.clear();
             return { ...state, userInfo: null };
+        case "BOOKMARK":
+            return {...state,userInfo:action?.payload}
          default:
             return state;
     }
