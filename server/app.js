@@ -7,6 +7,8 @@ const AuthRouter = require("./routes/userRoute");
 const BlogRouter = require("./routes/constblogrouter")
 const { connect } = require("mongoose");
 const app = express(); 
+const path= require('path')
+app.use(express.static(path.join(__dirname+"/public")))
 app.use(bodyParser.urlencoded({ limit: "25mb", extended: true }));
 app.use(bodyParser.json({ limit: "25mb", extended: true })); 
 app.use(cors());
